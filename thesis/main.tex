@@ -1,0 +1,70 @@
+\documentclass[12pt]{ut-thesis}
+%\documentclass[a4paper,12pt]{book}
+
+\usepackage{setspace}
+\doublespacing
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{url}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{apacite}
+\usepackage{bibentry}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{csvsimple}
+\usepackage[authormarkup=superscript,]{changes}
+\usepackage[colorinlistoftodos, textsize=tiny]{todonotes}
+\newcommand{\noteDavid}[1]{\todo[color=blue!25]{DAVID: #1}}
+\newcommand{\noteMoji}[1]{\todo[color=yellow!25]{MOJI: #1}}
+
+\let\oldsection\section
+\renewcommand\section{\clearpage\oldsection}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\flushbottom
+
+
+\begin{document}
+\nobibliography*
+\begin{preliminary}
+    
+\degree{Doctor of Philosophy}
+\department{Institute of Medical Science}
+\gradyear{2016}
+
+\author{David Qixiang Chen}
+\title{Population Diffusion Magnetic Resonance Tractography In Disease Classification: Application To Trigeminal Neuralgia}
+
+%\frontmatter
+\maketitle
+\tableofcontents
+
+\end{preliminary}
+
+%\mainmatter
+
+\include{./contents/abstract}
+\include{./contents/acknowledgements}
+\include{./contents/literature}
+\include{./contents/hypotheses}
+\include{./contents/paper1}
+\include{./contents/ap_paper}
+\include{./contents/sagit}
+\include{./contents/tn_sagit}
+\include{./contents/discussions}
+
+%\backmatter
+% bibliography, glossary and index would go here.
+%\addcontentsline{toc}{chapter}{Bibliography}
+
+\bibliographystyle{apacite}
+\bibliography{library,external_refs}
+
+\end{document}
