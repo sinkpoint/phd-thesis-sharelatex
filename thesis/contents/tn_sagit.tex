@@ -4,11 +4,11 @@
 \chaptermark{Study IV}
 
 \section{Abstract}
-\textbf{Introduction:} Trigeminal Neuralgia (TN) is a debilitating facial pain syndrome that involves the trigeminal sensory pathway. We demonstrate the use of a fully-automated group white-matter tractography, and Gaussian Process (GP) classification to pinpoint key white-matter diffusivity changes that maximally differentiate patients and healthy controls. 
+\textbf{Introduction:} Trigeminal Neuralgia (TN) is a debilitating facial neuropathic pain syndrome involving the trigeminal sensory pathway. We demonstrate the use of a fully-automated group white-matter tractography, and Gaussian Process (GP) classification to pinpoint key white-matter diffusivity changes that maximally differentiate patients and healthy controls. 
 
-\textbf{Methods:} We perform group merged tractography using SAGIT on 36 sex-matched TN patients (right-sided pain) and 36 controls. The trigeminal nerve (CN V), pontine decussation, and thalamocortical S1 pathways were reconstructed. GP classifiers were trained by scrolling a moving window over CN V and S1 tractography centroids. FA, GFA, RD, AD, and MD metrics were evaluated. Both TN vs. Control and Affect vs. Unaffected were analyzed. Classifiers that performed at greater-or-equal-to than 75\% accuracy were accepted.
+\textbf{Methods:} We performed group merged tractography using SAGIT on 36 sex-matched TN patients (right-sided pain) and 36 controls. The trigeminal nerve (CN V), pontine decussation, and thalamocortical S1 pathways were reconstructed. GP classifiers were trained by scrolling a moving window over CN V and S1 tractography centroids. FA, GFA, RD, AD, and MD metrics were evaluated. Both TN vs. Control and Affect vs. Unaffected were analyzed. Classifiers that performed at greater-or-equal-to 75\% accuracy were accepted.
 
-\textbf{Results:} Both affected and unaffected CN V can be differentiated with up to 80\% accuracy from controls. Affected CN V differences were more focused in the cistern and root-transition-zone, whereas unaffected CN V show more focus towards the brainstem. The affected S1 showed focused MD differences towards the cortex with an accuracy of 85\%. 
+\textbf{Results:} Both affected and unaffected trigeminal nerves in TN patients can be differentiated with up to 80\% accuracy from controls. Affected CN V differences were more focused in the cistern and root-transition-zone, whereas unaffected CN V show more focus towards the brainstem. The affected S1 showed focused MD differences towards the cortex with an accuracy of 85\%. 
 
 \textbf{Conclusions:} We have demonstrated the first instance of group-wise merged tractography analysis of TN vs. control,  as well as the first white-matter machine learning classification with GP. The method reproduced previous findings with finer-grained regional specificity. The study also revealed specific diffusivity changes in deeper white matter.
 
@@ -61,7 +61,7 @@ ROIs were defined on the template image to bilaterally delineate: 1) CN V (ROI: 
 
 Constrained spherical deconvolutional tractography (CST) \cite{Tournier2012b} was used to delineate the three sets of anatomy. Deterministic CST was applied to delineate CN V and S1 anatomy, while probabilistic (iFOD2) CST \cite{Jeurissen2011b,Tournier2010} was applied to delineate TPT anatomy. Deterministic CST was performed with step size = 0.3mm, angle threshold = 45$\deg$, streamline count=200, minimal length = 5 mm, initial cut-off = 0.1, cut-off = 0.1, and with 4th-order Runge-Kutta integration. Probabilistic tractography for S1 projection was performed with step size = 5mm, angle threshold = 45$\deg$, streamline count = 300, max number of stream generation = 1 million, minimal length = 10 mm, maximum lengh = 80 mm, initial cut-off = 0.15, cut-off = 0.15. Probabilistic tractography for TPT project was performed with step size = 1mm, and streamline count = 2000, and maximal length = 60 mm. 
 
-Tractography was first performed in the native DWI space for each individual.  FA, AD, RD, MD, GFA and AP metrics were embedded into the native tractography models by sampling the corresponding images maps using the points of the tractography geometry with tri-linear interpolation. Additionally, subject ID and group ID scalar values were also inserted into each tractography files for identification. 
+Tractography was first performed in the native DWI space for each individual.  FA, AD, RD, MD, and GFA metrics were embedded into the native tractography models by sampling the corresponding images maps using the points of the tractography geometry with tri-linear interpolation. Additionally, subject ID and group ID scalar values were also inserted into each tractography files for identification. 
 
 \subsubsection{Merged Tractography}
 All tractography delineations of the same anatomy across all the subjects and groups were merged into a single tractography file for analysis. A software library called “Fascicles” is created by the author to facilitate this process. The individual tract files were converted into a SQLite relational database \cite{owens2010sqlite}, and then all points were exported into a comma-delimited file. The points were then transformed by applying the subject DWI to T1, and T1 to template transforms using ANTs’  applyTransformToPoints command \cite{Avants2009}. The transformed points were then imported back into the SQLite database, and a new template-space tractography model is exported using the transformed point-set, with all its original scalars and subject/group ID associations preserved. Finally, all template-space tractography models across all the subjects are imported into a new SQLite database, and then exported as a single file for analysis. 
@@ -74,7 +74,7 @@ Tractography centroids, which were the average curve best fit the tract bundle, 
 \subsubsection{Gaussian Process Classification}
 
 Diffusivity metrics of affected (right side) and unaffected CN V and S1 pathways were independently compared with those of controls, where control metrics were the average of both left and right sides. The affected and unaffected sides in TN patients were also compared with each other. 
-Age was regressed out by using the residuals of the linear regression model from controls group. The diffusion values were subsequently normalized to zero mean with ranges $[-1, 1]$ for model training. 
+Age was regressed out by using the residuals of the linear regression model from the controls group. The diffusion values were subsequently normalized to zero mean with ranges $[-1, 1]$ for model training. 
 Gaussian Process (GP) classification was exhaustively performed on CN V and S1 nerve segments to identify key segment differences. Multiple moving windows of length between 5 to 30 were used to constraint tract segments, and a Gaussian Process model was trained for each windowed segment. The entire machine learning process was performed using Scikit-learn machine learning software framework.
 For each model, the subjects were split into train and validation sets using stratified 10-fold cross-validation. The GP model was initiated with Matern kernel (length scale = 1), and the model fitted using the training set. The validation set was used to measure prediction accuracy, and the mean accuracy of the 10-fold cross-validation was used to assess the windowed segment. Segments accuracy greater than 75\% were accepted, and the segment length with the greatest accuracy was then determined. 
 
@@ -86,7 +86,7 @@ S1 streamlines reliably extended into the face region of the S1 cortex (Figure \
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\linewidth]{CN V-inferior-view.png}
+\includegraphics[width=\linewidth]{cnv-inferior-view.png}
 \caption{Inferior view of the merged CN V delineations.}
 \label{fig:GPfigure1}
 \end{figure}
@@ -113,14 +113,14 @@ The best performing segments versus controls is GFA (segment 8--14) on the left 
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\linewidth]{figure-GP-CN V.pdf}
+\includegraphics[width=\linewidth]{figure-GP-CNV.pdf}
 \caption{CN V classifier performance}
 \label{fig:GPfigure4}
 \end{figure}
 
 \begin{table}[ht]
 \centering
-\csvautotabular{CN V_table.csv}
+\csvautotabular{cnv_table.csv}
 \caption{CN V GP classifier performance data}
 \caption*{List of the best accuracy for each diffusion metric. Precision, recall, and f1 scores are also provided for reference}
 \label{table:CN V}
