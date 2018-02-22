@@ -78,7 +78,14 @@ All tractography delineations of the same anatomy across all the subjects and gr
 The merged tract was post-processed in 3D Slicer to remove anatomically erroneous streamlines. These include remnant CN V streamlines that stray into the cerebellar peduncles or other non-TGN regions, and streamlines that are perpendicular to the nerve in the cisternal space that appear to be partial delineation of vessels or noise. TPT streamlines that did not decussate at the level of the pons, as well as fibers that stray into the contralateral TGN were removed. S1 streamlines that stray medially towards other regions such as the corpus callosum were also removed.
 
 \subsubsection{Along-the-tract Analysis}
-Tractography centroids, which were the average curve best fit the tract bundle, were identified on the merged tracts in template space. The spline was then resampled into 30 points and became the centroid definition. Nearest-neighbor point assignment was used to divide the merged tract into 30 cross sections along the centroids. Diffusion metrics from the tractography points were averaged for each of the cross-sections. CN V centroids were manually defined using 3 control points. A Catmull-Rom spline \cite{DeRose1988} was then defined from these control points using the VTK software library \cite{Schroeder2005}. TPT and S1 centroids were defined using QuickBundles \cite{Garyfallidis2012} with distance threshold of 30.
+Tractography centroids, which were the average curve best fit the tract bundle, were identified on the merged tracts in template space. The spline was then resampled into 30 points and became the centroid definition. Nearest-neighbor point assignment was used to divide the merged tract into 30 sections along the centroid. Diffusion metrics from the tractography points were averaged for each of the sections. CN V centroids were manually defined using 3 control points. A Catmull-Rom spline \cite{DeRose1988} was then defined from these control points using the VTK software library \cite{Schroeder2005}. TPT and S1 centroids were defined using QuickBundles \cite{Garyfallidis2012} with distance threshold of 30.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{thesis/images/tn-gp-sagit/figure-path-analysis.pdf}
+\caption{Diagram for the along-the-tract data processing.}
+\label{fig:GPfigure-method-centroid}
+\end{figure}
 
 \subsubsection{Gaussian Process Classification}
 
