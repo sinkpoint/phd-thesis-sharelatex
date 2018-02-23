@@ -139,12 +139,12 @@ The FA classifier achieved 75\% accuracy in differentiating affected versus unaf
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{figure-GP-CNV.pdf}
-\caption{CN V classifier performances. The left panel shows the coverage (y-axis) and accuracies (x-axis) of the GP classifiers with greater than 70\% accuracy. The middle panel is a heatmap of the FA values of the corresponding centroid positions. The right panel shows the centroid and point clusterings for anatomical reference. The colours of the points correspond to their respective cluster index on a rainbow spectrum. }
+\caption{CN V classifier performances. This figure consists of 3 panels. Panel A, y axis represents the anatomical subregions of the trigeminal nerve as defined by the centroid subdivisions (see Figure \ref{fig:GPfigure-method-centroid}). Panel A, x-axis denotes the accuracy of the classifiers (scale of 0-1, with 1 representing 100\%)). Each diffusivity is denoted with respect to the window size (see Figure \ref{fig:GPfigure-method-centroid}) and position along the centroid where the accuracy is derived from. 3 instances are studied: comparison of left (unaffected) vs. control (average of both trigeminal nerves), comparison of right (affected) vs. control and comparison of left (unaffected) vs. right (affected). The colours for the diffusivity in each panel in A is arbitrary. Panel B is a heatmap (raw visualization) of FA values of the corresponding centroid positions. Panel C shows the centroid and point assignments for anatomical reference. The colours of the points correspond to their respective subdivision position as described in figure \ref{fig:GPfigure-method-centroid} and \ref{fig:GPfigure-method-centroid}} Throughout the figure, the position of the centroid subdivisions are aligned and expressed with respect to the anatomical position as per panel B.
 \label{fig:GPfigure4}
 \end{figure}
 
 \paragraph{Trigeminopontothalamic tract}
-Classifiers could distinguish bilateral TPT pathways (affected and unaffected) from controls with greater than 80\% accuracy (Figure \ref{fig:GPfigureTPT}). The right FA classifier achieved the greatest accuracy at 85\%, and right RD classifier was least accuracy at 83\%. The left FA classifier showed greatest accuracy at 89\% and left RD classifier showed the least accuray at 71\%. The classifiers covered both the decussation and the ascending segments of the TPT, with the right decussation showing more proximal coverage. The left-versus-right classifiers achieved maximum accuracy of 98\% (FA) and minimum of 88\% (MD). The FA classifier covered position 4--14, suggesting strong laterality differences in the TPT (Table \ref{table:GP}). 
+Classifiers could distinguish bilateral TPT pathways (affected and unaffected) from controls with greater than 80\% accuracy (Figure \ref{fig:GPfigureTPT}). The right FA classifier achieved the greatest accuracy at 85\%, and right RD classifier was least accuracy at 83\%. The left FA classifier showed greatest accuracy at 89\% and left RD classifier showed the least accuracy at 71\%. The classifiers covered both the decussation and the ascending segments of the TPT, with the right decussation showing more proximal coverage. The left-versus-right classifiers achieved maximum accuracy of 98\% (FA) and minimum of 88\% (MD). The FA classifier covered position 4--14, suggesting strong laterality differences in the TPT (Table \ref{table:GP}). 
 
 \begin{figure}[ht]
 \centering
@@ -166,7 +166,7 @@ Classifiers distinguished bilateral S1 face region pathways from controls with a
 \begin{table}[ht]
 \centering
 \csvautotabular{tn_sagit_table.csv}
-\caption{List of the best GP models for different diffusivity meatures and window segments. Only models with at least 70\% accuracy were accepted. Precision and f1 scores are also provided for reference}
+\caption{List of the best GP models for different diffusivity measures and window segments. Only models with at least 70\% accuracy were accepted. Precision and f1 scores are also provided for reference}
 \label{table:GP}
 \end{table}
 
