@@ -78,12 +78,14 @@ All tractography delineations of the same anatomy across all the subjects and gr
 The merged tract was post-processed in 3D Slicer to remove anatomically erroneous streamlines. These include remnant CN V streamlines that stray into the cerebellar peduncles or other non-TGN regions, and streamlines that are perpendicular to the nerve in the cisternal space that appear to be partial delineation of vessels or noise. TPT streamlines that did not decussate at the level of the pons, as well as fibers that stray into the contralateral TGN were removed. S1 streamlines that stray medially towards other regions such as the corpus callosum were also removed.
 
 \subsubsection{Along-the-tract Analysis}
-For the purpose of quantifying the trigeminal pathways, a centroid was defined for the merged tractography of each pathway (Figure \ref{fig:GPfigure-method-centroid}). The centroids were defined as the average curve that best fit the tract bundles, and were in template space. CN V centroids were manually defined using 3 control points. A Catmull-Rom spline \cite{DeRose1988} was then defined from these control points using the VTK software library \cite{Schroeder2005}. The spline was then resampled into 30 points. TPT and S1 centroids were defined using QuickBundles \cite{Garyfallidis2012} with distance threshold of 30. Nearest-neighbor point assignment was used to cluster  the points of the merged tract model to the centroid control points, to obtain the corresponding 30 sections along each centroid. Diffusion metrics from the tractography points were averaged for each of the sections for each subject. 
+For the purpose of quantifying the trigeminal pathways, a centroid was defined for the merged tractography of each pathway (Figure \ref{fig:GPfigure-method-centroid}). The centroids were defined as the average curve that best fit the tract bundles, and were in template space. CN V centroids were manually defined using 3 control points. A Catmull-Rom spline \cite{DeRose1988} was then defined from these control points using the VTK software library \cite{Schroeder2005}. The spline was then resampled into 30 subpoints. TPT and S1 centroids were defined using QuickBundles \cite{Garyfallidis2012} with distance threshold of 30. Nearest-neighbor point assignment was used to cluster the points of the merged tract model to the centroid subpoints, to obtain the corresponding 30 divisions along each centroid. Diffusion metrics from the tractography points were averaged for each of the divisions for each subject. 
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{thesis/images/tn-gp-sagit/figure-path-analysis.pdf}
-\caption{Diagram for the along-the-tract data processing.}
+\caption{Diagram for the along-the-tract data processing.
+Process starts with 2 specific goals: 1) Derive the spatial structure that best represent the merged streamlines, 2) Deriving sub-regional tissue information from these. A) First the best-fit curve is obtained to represent the collective streamlines, which is defined as the centroid. B) In areas where this can be automated, Quickbundles was used. For the CN V, the centroid was defined manually given the unpredictability of the lengths of streamlines. C) Representative drawing of the centroid onto the streamline points, representing the collective spatial information. The centroid is resampled to 30 subpoints. D) To derive tissue information, a nearest neighbor algorithm was used to assign streamline points to form 30 divisions. E) The average diffusivity metrics was pooled for each of the 36 subjects at each division. The colours represent the spatial position of each of the 30 divisions, and the streamline points that were assigned to each particular division. The data was then used for machine learning pipeline (see Figure \ref{fig:GPfigure-gp-train}).
+}
 \label{fig:GPfigure-method-centroid}
 \end{figure}
 
@@ -97,7 +99,7 @@ For each window, the subjects were split into train and validation sets using st
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{thesis/images/tn-gp-sagit/figure-GP-training.pdf}
-\caption{Diagram for generating the best performing classifier for a particular window size. The data for each window was used to generate 10 GP models with 10-fold cross-validation, an average accuracy was determined at each window position. Finally the window position with the best accuracy was selected. The same process is repeated on every diffusivity metric, and for all window sizes ranging from 5 to 30. }
+\caption{Diagram for generating the best performing classifier for a particular window size. The data was derived from Figure \ref{fig:GPfigure-method-centroid}, each window was used to generate 10 GP models with 10-fold cross-validation, an average accuracy was determined at each window position. Finally the window position with the best accuracy was selected. The same process is repeated on every diffusivity metric, and for all window sizes ranging from 5 to 30. }
 \label{fig:GPfigure-gp-train}
 \end{figure}
 
@@ -132,7 +134,7 @@ S1 streamlines reliably extended into the face region of the S1 cortex (Figure \
 \paragraph{CN V}
 The classifier distinguished bilateral trigeminal nerves (affected and unaffected) from controls as well as affected trigeminal nerve from unaffected nerves.Both sides were distinguished from controls with classifiers that achieved around 80\% accuracy (Figure \ref{fig:GPfigure4}). 
 Classifiers on the right side had accuracies ranging from 76\% (GFA) to 86\% (FA). The left classifiers achieved accuracy ranging from 79\% (MD) to 81\% (FA). The right side showed more overlap of segment ranges between positions 14--24, in the region of the cistern/ganglion; while the left side showed segments that covered the entire the nerve, and extended to cover position 0--4 in the brainstem. Overall, the right side classifiers extend further into the distal space, into the cistern and even the ganglion, while the left side extended more into the brainstem. FA classifier consistently achieved the highest accuracy in both sides, with right side at position 17--23 (cistern/ganglion) and left FA at 2--16 (brainstem/cistern).
-The FA classifier achieved 75\% accuracy in differentiating affected versus unaffected nerves, where its segments ranged from 11 to 19, which was the cisternal segment. The GFA classifier achieved 70\% accuracy in region 9--12. Demonstrating that affected-unaffected diffusivity differences were found in the cistern/REZ (Table \ref{table:CN V}).
+The FA classifier achieved 75\% accuracy in differentiating affected versus unaffected nerves, where its segments ranged from 11 to 19, which was the cisternal segment. The GFA classifier achieved 70\% accuracy in region 9--12. Demonstrating that affected-unaffected diffusivity differences were found in the cistern/REZ (Table \ref{table:GP}).
 
 \begin{figure}[ht]
 \centering
@@ -142,7 +144,7 @@ The FA classifier achieved 75\% accuracy in differentiating affected versus unaf
 \end{figure}
 
 \paragraph{Trigeminopontothalamic tract}
-Classifiers could distinguish bilateral TPT pathways (affected and unaffected) from controls with greater than 80\% accuracy (Figure \ref{fig:GPfigureTPT}). The right FA classifier achieved the greatest accuracy at 85\%, and right RD classifier was least accuracy at 83\%. The left FA classifier showed greatest accuracy at 89\% and left RD classifier showed the least accuray at 71\%. The classifiers covered both the decussation and the ascending segments of the TPT, with the right decussation showing more proximal coverage. The left-versus-right classifiers achieved maximum accuracy of 98\% (FA) and minimum of 88\% (MD). The FA classifier covered position 4--14, suggesting strong laterality differences in the TPT (Table \ref{table:tpt}). 
+Classifiers could distinguish bilateral TPT pathways (affected and unaffected) from controls with greater than 80\% accuracy (Figure \ref{fig:GPfigureTPT}). The right FA classifier achieved the greatest accuracy at 85\%, and right RD classifier was least accuracy at 83\%. The left FA classifier showed greatest accuracy at 89\% and left RD classifier showed the least accuray at 71\%. The classifiers covered both the decussation and the ascending segments of the TPT, with the right decussation showing more proximal coverage. The left-versus-right classifiers achieved maximum accuracy of 98\% (FA) and minimum of 88\% (MD). The FA classifier covered position 4--14, suggesting strong laterality differences in the TPT (Table \ref{table:GP}). 
 
 \begin{figure}[ht]
 \centering
@@ -151,15 +153,8 @@ Classifiers could distinguish bilateral TPT pathways (affected and unaffected) f
 \label{fig:GPfigureTPT}
 \end{figure}
 
-\begin{table}[ht]
-\centering
-\csvautotabular{tpt_table.csv}
-\caption*{List of the best accuracies for each diffusion metric. Precision, recall, and f1 scores are also provided for reference}
-\label{table:tpt}
-\end{table}
-
 \paragraph{S1}
-Classifiers distinguished bilateral S1 face region pathways from controls with about 85\% accuracy. The left RD classifier achieved max accuracy of 87\% at position 13--20, while the right RD classifier achieved max accuracy of 83\% at position 8--26 (Figure \ref{fig:GPfigure5}). Overall the left classifier ranged from 72\% (AD) to 87\% (RD), and the right classifiers ranged from 73\% (GFA) to 83\% (RD) (Table \ref{table:s1}). Classifiers of both sides covered the the branching region between the thalamus and cortex. Left-versus-right classifiers showed maximum accuracy of 78\% (RD), and minimum of 76\% (FA). The left-versus-right classifiers overlap in the regions 5--10, at the segment where the pathway emerges from the thalamus.
+Classifiers distinguished bilateral S1 face region pathways from controls with about 85\% accuracy. The left RD classifier achieved max accuracy of 87\% at position 13--20, while the right RD classifier achieved max accuracy of 83\% at position 8--26 (Figure \ref{fig:GPfigure5}). Overall the left classifier ranged from 72\% (AD) to 87\% (RD), and the right classifiers ranged from 73\% (GFA) to 83\% (RD) (Table \ref{table:GP}). Classifiers of both sides covered the the branching region between the thalamus and cortex. Left-versus-right classifiers showed maximum accuracy of 78\% (RD), and minimum of 76\% (FA). The left-versus-right classifiers overlap in the regions 5--10, at the segment where the pathway emerges from the thalamus.
 
 \begin{figure}[ht]
 \centering
@@ -171,9 +166,8 @@ Classifiers distinguished bilateral S1 face region pathways from controls with a
 \begin{table}[ht]
 \centering
 \csvautotabular{tn_sagit_table.csv}
-\caption{CN V GP classifier performance data}
-\caption*{List of the best accuracy for each diffusion metric. Precision, recall, and f1 scores are also provided for reference}
-\label{table:CN V}
+\caption{List of the best GP models for different diffusivity meatures and window segments. Only models with at least 70\% accuracy were accepted. Precision and f1 scores are also provided for reference}
+\label{table:GP}
 \end{table}
 
 \section{Discussion}
