@@ -91,8 +91,15 @@ Tractography centroids, which were the average curve best fit the tract bundle, 
 
 Diffusivity metrics of affected (right side) and unaffected CN V, TPT, and S1 pathways were independently compared with those of controls, where control metrics were the average of both left and right sides. The affected and unaffected sides in TN patients were also compared with each other. 
 Age was regressed out by using the residuals of the linear regression model from the controls group. The diffusion values were subsequently normalized to zero-mean with ranges $[-1, 1]$ for model training. 
-Gaussian Process (GP) classification was performed to identify key segment differences. Multiple moving windows of length between 5 to 30 were used to constraint tract segments, and a Gaussian Process model was trained for each windowed segment. The entire machine learning process was performed using Scikit-learn machine learning software framework.
-For each model, the subjects were split into train and validation sets using stratified 10-fold cross-validation. The GP model was initiated with Matern kernel (length scale = 1), and the model fitted using the training set. The validation set was used to measure prediction accuracy, and the mean accuracy of the 10-fold cross-validation was used to assess the windowed segment. Segments accuracy greater than 70\% were accepted, and the segment length with the greatest accuracy was then determined. 
+Gaussian Process (GP) classification was performed to identify key segment differences. Multiple moving windows of length between 5 to 30 were used to constraint tract segments, and a Gaussian Process model was trained for each windowed segment (Figure \ref{fig:GPfigure-gp-train}). The entire machine learning process was performed using Scikit-learn machine learning software framework.
+For each window, the subjects were split into train and validation sets using stratified 10-fold cross-validation, and a separate GP classifier was trained for each fold. GP models were initiated with Matern kernel (length scale = 1). The validation set was used to measure prediction accuracy, and the mean accuracy of the 10-fold cross-validation was used to assess the windowed segment. Segments accuracy greater than 70\% were accepted, and the window segment with the greatest accuracy was then determined. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{thesis/images/tn-gp-sagit/figure-GP-training.pdf}
+\caption{Diagram for generating the best performing classifier for a particular window size. The data for each window was used to generate 10 GP models with 10-fold cross-validation, an average accuracy was determined at each window position. Finally the window position with the best accuracy was selected. The same process is repeated on every diffusivity metric, and for all window sizes ranging from 5 to 30. }
+\label{fig:GPfigure-gp-train}
+\end{figure}
 
 \subsection{Results}
 \subsubsection{Anatomical Delineations}
