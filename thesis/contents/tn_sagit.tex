@@ -99,7 +99,7 @@ For each window, the subjects were split into train and validation sets using st
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{thesis/images/tn-gp-sagit/figure-GP-training.pdf}
-\caption{Diagram for generating the best performing classifier for a particular window size. The data was derived from Figure \ref{fig:GPfigure-method-centroid}, each window was used to generate 10 GP models with 10-fold cross-validation, an average accuracy was determined at each window position. Finally the window position with the best accuracy was selected. The same process is repeated on every diffusivity metric, and for all window sizes ranging from 5 to 30. }
+\caption{Diagram for generating the best performing classifier for a particular window size. The data was derived from Figure \ref{fig:GPfigure-method-centroid}, where the top bar represents data from each centroid division, where each position represents the anatomical region of the trigeminal pathways within it. Each window was used to generate 10 GP models with 10-fold cross-validation, an average accuracy was determined at each window position. Finally the window position with the best accuracy was selected. The same process is repeated on every diffusivity metric, and for all window sizes ranging from 5 to 30. }
 \label{fig:GPfigure-gp-train}
 \end{figure}
 
@@ -112,21 +112,21 @@ S1 streamlines reliably extended into the face region of the S1 cortex (Figure \
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{cnv-inferior-view.png}
-\caption{Merged CN V reconstruction of 36 subjects, with the colour scale depicting FA values derived from raw streamlines. The expect increase in FA as the fibers enter the brainstem can be visualized, and denotes good registration between subjects. }
+\caption{Merged CN V reconstruction of 36 subjects, with the colour scale depicting FA values derived from raw streamlines, prior to the generation of centroids (see Figure \ref{fig:GPfigure-method-centroid} A). The expected increase in FA as the fibers enter the brainstem can be visualized, and denotes good registration between subjects. }
 \label{fig:GPfigure1}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{view-decussation.png}
-\caption{Focused view of the TPT decussation. Red: Right TPT; Blue: Left TPT. Note the Right TPT diverts around the left TPT bundle. }
+\caption{Focused view of the TPT and its decussation, prior to the generation of centroids (see Figure \ref{fig:GPfigure-method-centroid} A). Colours were chosen arbitrarily to denote left and right pathways, however the colour intensity represents FA values as depicted by FA scale, top right corner. Red: Right TPT; Blue: Left TPT. Note the Right TPT appears to divert around the left TPT bundle. }
 \label{fig:GPfigure2}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{view-left-right.png}
-\caption{The complete trigeminal discriminatory sensory pathway, FA is depicted by the colour scales (Red: right side; Blue: left side). The S1 pathways projects to the lateral face region of the S1 cortex. }
+\caption{Visual representation of the course of the trigeminal pathway from its cisternal component to the face area of the sensory S1 cortex. Images obtained prior to the generation of centroids (see Figure \ref{fig:GPfigure-method-centroid} A). FA is depicted by the colour scales (Red: right side; Blue: left side). The S1 pathways projects to the lateral face region of the S1 cortex. }
 \label{fig:GPfigure3}
 \end{figure}
 
