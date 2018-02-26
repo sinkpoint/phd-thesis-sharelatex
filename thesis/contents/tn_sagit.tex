@@ -1,5 +1,3 @@
-\graphicspath{{images/tn-gp-sagit/drafts/}}
-
 
 \section{Introduction}
 \subsubsection{Trigeminal Neuralgia}
@@ -47,7 +45,7 @@ We studied 36 TN subjects with classic TN (28 females, 8 males; age 60.1$\pm$16 
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\linewidth]{thesis/images/tn-gp-sagit/figure-method.pdf}
+\includegraphics[width=\linewidth]{figure-method.pdf}
 \caption{Diagram of the processing steps}
 \label{fig:GPMethods}
 \end{figure}
@@ -69,7 +67,7 @@ For the purpose of quantifying the trigeminal pathways, a centroid was defined f
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\linewidth]{thesis/images/tn-gp-sagit/figure-path-analysis.pdf}
+\includegraphics[width=\linewidth]{figure-path-analysis.pdf}
 \caption{Diagram for the along-the-tract data processing.
 Process starts with 2 specific goals: 1) Derive the spatial structure that best represent the merged streamlines, 2) Deriving sub-regional tissue information from these. A) First the best-fit curve is obtained to represent the collective streamlines, which is defined as the centroid. B) In areas where this can be automated, Quickbundles was used. For the CN V, the centroid was defined manually given the unpredictability of the lengths of streamlines. C) Representative drawing of the centroid onto the streamline points, representing the collective spatial information. The centroid is resampled to 30 subpoints. D) To derive tissue information, a nearest neighbor algorithm was used to assign streamline points to form 30 divisions. E) The average diffusivity metrics was pooled for each of the 36 subjects at each division. The colours represent the spatial position of each of the 30 divisions, and the streamline points that were assigned to each particular division. The data was then used for machine learning pipeline (see Figure \ref{fig:GPfigure-gp-train}).
 }
@@ -85,7 +83,7 @@ For each window, the subjects were split into train and validation sets using st
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\linewidth]{thesis/images/tn-gp-sagit/figure-GP-training.pdf}
+\includegraphics[width=\linewidth]{figure-GP-training.pdf}
 \caption{Diagram for generating the best performing classifier for a particular window size. The data was derived from Figure \ref{fig:GPfigure-method-centroid}, where the top bar represents data from each centroid division, and each position represents the anatomical region of the trigeminal pathways within it. Each window was used to generate 10 GP models with 10-fold cross-validation, an average accuracy was determined at each window position. Finally the window position with the best accuracy was selected. The same process is repeated on every diffusivity metric, and for all window sizes ranging from 5 to 30. }
 \label{fig:GPfigure-gp-train}
 \end{figure}
