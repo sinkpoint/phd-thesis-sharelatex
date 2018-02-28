@@ -6,7 +6,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\graphicspath{ {thesis/images/} }
+\graphicspath{ {images/} }
 \usepackage{url}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -25,13 +25,7 @@
 \usepackage[acronym,toc]{glossaries}
 \makeglossaries
 
-%\include{./contents/glossary}
-
-\newglossaryentry{utc}{name=utc,description={Coordinated Universal Time}}
-\newglossaryentry{adt}{name=adt,description={Atlantic Daylight Time}}
-\newglossaryentry{est}{name=est,description={Eastern Standard Time}}
-
-\newacronym{tn}{TN}{Trigeminal Neuralgia}
+\input{./contents/glossary}
 
 
 \usepackage[colorinlistoftodos, textsize=tiny]{todonotes}
@@ -66,27 +60,21 @@
 %\frontmatter
 \maketitle
 \tableofcontents
-
+\printglossary[type=\acronymtype, nonumberlist]
 \end{preliminary}
 
-\glsaddall
-\glsadd{utc}\glsadd{adt}\glsadd{est}
-
-\printglossary[type=\acronymtype]
-\printglossary
 
 %\mainmatter
-\Gls{tn}
 
-\include{./thesis/contents/abstract}
-\include{./thesis/contents/acknowledgements}
-\include{./thesis/contents/literature}
-\include{./thesis/contents/hypotheses}
-\include{./thesis/contents/paper1}
-\include{./thesis/contents/ap_paper}
-\include{./thesis/contents/sagit}
-\include{./thesis/contents/tn_sagit_cover}
-\include{./thesis/contents/discussions}
+\include{./contents/abstract}
+\include{./contents/acknowledgements}
+\include{./contents/literature}
+\include{./contents/hypotheses}
+\include{./contents/paper1}
+\include{./contents/ap_paper}
+\include{./contents/sagit}
+\include{./contents/tn_sagit_cover}
+\include{./contents/discussions}
 
 
 %\backmatter
@@ -94,6 +82,6 @@
 %\addcontentsline{toc}{chapter}{Bibliography}
 
 \bibliographystyle{apacite}
-\bibliography{./mendeley,thesis/external_refs}
+\bibliography{mendeley,external_refs}
 
 \end{document}
