@@ -67,9 +67,26 @@ T$_1$ and DWIs were acquired from 20 healthy subjects (mean age $31.1\pm10.2$; 1
 \subsection{DWI Derived Scalar Image Processing}
 Brain masks were created for T$_1$ and DWI using FSL bet \cite{Smith2002}, with bet fraction=0.2. Brain masks were contracted by a 2 mm spherical kernel in FSL to minimize the high-intensity skull halo that occurs in image types such as FA that may interfere with registration. The brain mask is then applied to all DWI derived scalar images.
 
-B0, ADWI, MDWI, FA, GFA and AP images were each generated (Figures 1, 2) as follows: B0, ADWI and MDWI images were created using FSL (Smith et al., 2004); FA images were created in 3D Slicer by calculating the scalars following diffusion tensor estimation \cite{Pieper2006}; GFA and AP images were created with Dipy software library \cite{Descoteaux2007a,Garyfallidis2014}. 
+B0, ADWI, MDWI, FA, GFA and AP images were each generated (Figures \ref{fig:APfigure1}, \ref{fig:APfigure2}) as follows: B0, ADWI and MDWI images were created using FSL (Smith et al., 2004); FA images were created in 3D Slicer by calculating the scalars following diffusion tensor estimation \cite{Pieper2006}; GFA and AP images were created with Dipy software library \cite{Descoteaux2007a,Garyfallidis2014}. 
 
 Two sets of AP images were generated with an author-implemented AP algorithm in Dipy. The first (denoted as AP1) is created with matching normalization constant with the original method from Dell’Acqua et al \cite{DellAcqua2014} ($\text{AP}_{\text{ref}}$ = 10-5 , then zero all image values \textless 0). The second (denoted as AP2), is created with $\text{AP}_{\text{ref}}$ = 1, and then the entire image values are shifted to the positive range based on the image minimum. Pair-wise log joint histogram of the DWI derived scalar images was plotted \cite{Hunter2007} to evaluate image intensity orthogonality. 
+
+
+\begin{figure}[ht]
+\centering
+\begin{tabular}{c}
+    \includegraphics[width=0.8\linewidth]{figure1}
+\end{tabular}
+\caption{Illustrated overview of the processing steps to measure DWI to T1 registration similarities.}
+\label{fig:APfigure1}
+\end{figure}
+
+\begin{figure}[ht]
+\includegraphics[width=\linewidth]{figure2}
+\caption{DWI derived scalar images (B0, MDWI, FA, GFA, and AP) comparing to T1 (top left).}
+\centering
+\label{fig:APfigure2}
+\end{figure}
 
 \subsection{T1 to DWI Co-registration}
 Registrations were performed using Anatomical Normalization Tools (ANTs) \cite{Avants2008b} with affine and symmetric diffeomorphic registration. MI was used as the cost function for affine registration, while CC and MI were used separately as the SyN registration cost-functions. Parameters for affine registration: step size = 0.1, metric = mutual-information (MI), convergence = 10000x10000x10000x10000x10000, shrink factors = 5x4x3x2x1, smoothing sigmas = 4x3x2x1x0mm. Parameters for symmetric diffeomorphic registration (SyN): MI metric weight = 1, MI bins = 32; CC metric weight = 1, CC radius = 3; convergence = 50x35x15,1e-7, shrink-factors = 3x2x1, smoothing sigmas = 2x1x0mm, and use-histogram-matching = true.
@@ -84,21 +101,38 @@ ANOVA and Tukey post-hoc tests were performed using R statistics software (R Cor
 Additionally, we used a joint log-histogram of all the DWI derived scalar images to examine possible group biases in DWI scalar types. We intuited that the scalar maps can roughly be divided into two primary groups: those that are directly computed from the DWI directions (DSG), and share similar intensity profiles, such as B0, MDWI, ADWI; and those computed from anisotropic diffusion models (ASG), such as FA, GFA, and AP. It’s possible that there exists a degree of orthogonality between image types, such that there may be no single image type that can equally translate the registration improvements to other images with different intensity profiles. The joint log-histogram is to check for the existence of this type of orthogonality. 
 
 \subsection{Results}
-Pair-wise joint log histogram (Figure 3) of the DWI derived scalar images revealed distinct correlation patterns in some pairs of images. FA–AP and FA–GFA showed distinct diagonal correlations patterns with each other; while B0 showed no clear pattern of correlation with other image types, with the exception of MDWI. The scalar images FA, GFA and AP are parameter maps derived from diffusion models, whereas B0 and MDWI are directly derived from the DWI image sequence. We thus grouped FA, AP, and GFA based on their intensity histogram correlations as the anisotropic scalar group (ASG), while B0 and MDWI form a directly derived scalar group (DSG). 
+Pair-wise joint log histogram (Figure \ref{fig:APfigure3}) of the DWI derived scalar images revealed distinct correlation patterns in some pairs of images. FA–AP and FA–GFA showed distinct diagonal correlations patterns with each other; while B0 showed no clear pattern of correlation with other image types, with the exception of MDWI. The scalar images FA, GFA and AP are parameter maps derived from diffusion models, whereas B0 and MDWI are directly derived from the DWI image sequence. We thus grouped FA, AP, and GFA based on their intensity histogram correlations as the anisotropic scalar group (ASG), while B0 and MDWI form a directly derived scalar group (DSG). 
+
+\begin{figure}[p]
+\includegraphics[width=\linewidth]{figure3}
+\caption{Pair-wise joint log histogram of the DWI derived scalar images.}
+\centering
+\label{fig:APfigure3}
+\end{figure}
+
+\begin{figure}[p]
+\includegraphics[width=\linewidth]{figure4}
+\caption{Visual comparisons of MDWI to T1 co-registrations. 
+Shown are examples of MDWI images from one subject deformed using different registration transforms derived from the different image intermediates. 
+T1 is overlaid as thresholded outlines in red. 
+Primary differences in registration quality can be found in the brainstem (left and middle columns), and in the lateral ventricles, especially in the ventricular-caudate boundary (right column). }
+\centering
+\label{fig:APfigure4}
+\end{figure}
 
 \subsubsection{Differences in initial similarity scores affect registration accuracy}
-Visual overlay of MDWI to T1 co-registrations (Figure 4) suggests that DWI derived scalar image with higher initial CC and MI scores (Figures 5) appear to result in more accurate registrations in the brainstem, insula, temporal cortices, and lateral ventricles (especially around the ventricular-caudate boundary where CSF/grey/white-matter are found in close proximity) compared to the other image types. Visually, B0, FA and GFA show registration inaccuracies fitting the areas surrounding the brainstem and the lateral ventricles (Figure 4), while MDWI and AP result in improved registration in these key areas. The results of MDWI and AP are visually very similar.
+Visual overlay of MDWI to T1 co-registrations (Figure \ref{fig:APfigure4}) suggests that DWI derived scalar image with higher initial CC and MI scores (Figures \ref{fig:APfigure5}) appear to result in more accurate registrations in the brainstem, insula, temporal cortices, and lateral ventricles (especially around the ventricular-caudate boundary where CSF/grey/white-matter are found in close proximity) compared to the other image types. Visually, B0, FA and GFA show registration inaccuracies fitting the areas surrounding the brainstem and the lateral ventricles (Figure \ref{fig:APfigure4}), while MDWI and AP result in improved registration in these key areas. The results of MDWI and AP are visually very similar.
 
-The initial T1–intermediate CC and MI similarity scores without any applied transformation ($T_{\text{Identity}}$) showed varied initial values. MDWI showed the highest initial CC scores, with FA images showing lowest initial CC (Figure 5); AP showed similar initial CC score with B0 and GFA. For MI scores (it is important to note that a more negative MI score implies higher similarity in this study), AP showed very similar initial MI score when compared to MDWI (best), while GFA resulted in the highest (worst) initial MI score.
+The initial T1–intermediate CC and MI similarity scores without any applied transformation ($T_{\text{Identity}}$) showed varied initial values. MDWI showed the highest initial CC scores, with FA images showing lowest initial CC (Figure \ref{fig:APfigure5}); AP showed similar initial CC score with B0 and GFA. For MI scores (it is important to note that a more negative MI score implies higher similarity in this study), AP showed very similar initial MI score when compared to MDWI (best), while GFA resulted in the highest (worst) initial MI score.
 
 \subsubsection{Registration improvements are not uniformly transferred when applied to other image types}
-The progression of similarity scores following $T_{\text{Affine}}$ and $T_{\text{Affine}}$+SyN for each of the scalar images (B0, ADWI, MDWI, FA, GFA, and AP) showed similar trends between CC and MI cost-functions (Figures 5,  Supplementary 1; top rows). In general, the similarities of the images between T1 and transformed DWI scalar images increased marginally after $T_{\text{Affine}}$, and substantially after $T_{\text{Affine}}$+SyN for most of the co-registration transforms. An exception is FA transforms, where CC scores decreased when the transform was applied to other images (Figure 5; rows 1-2, column 4), with the exception of AP. 
+The progression of similarity scores following $T_{\text{Affine}}$ and $T_{\text{Affine}}$+SyN for each of the scalar images (B0, ADWI, MDWI, FA, GFA, and AP) showed similar trends between CC and MI cost-functions (Figures \ref{fig:APfigure5},  Figure \ref{fig:APSup1}; top rows). In general, the similarities of the images between T1 and transformed DWI scalar images increased marginally after $T_{\text{Affine}}$, and substantially after $T_{\text{Affine}}$+SyN for most of the co-registration transforms. An exception is FA transforms, where CC scores decreased when the transform was applied to other images (Figure \ref{fig:APfigure5}; rows 1-2, column 4), with the exception of AP. 
 
-Improvement in CC and MI measures were not uniform for all DWI derived scalar images; this was better illustrated by percent changes (Figures 5; bottom rows). Different intermediate transforms differentially affected the scores in accordance with the degree of intensity correlations as measured in Figure 3. Therefore, DSG transforms preferentially improved DSG, and ASG transforms improved ASG images. FA transforms, however, are notable, where CC scores across all DWI derived scalar images diverged for both CC and MI cost functions (Figures 5, Supplementary 2; column 4). In fact, FA transforms substantially decreased DSG CC scores, and also negatively impacted DSG MI scores as well. FA transforms also showed exception to GFA, where it affected GFA negatively similar to DSG images. GFA behaved more like DSG images, where B0 and MDWI all favorably affected its CC and MI scores, while at the same time it was strongly affected by AP as well. However GFA seem to behave differently under autodeformation, as evident by its distinct MI changes (Figures 5; column 5). AP transforms showed the least amount of variability when applied to DWI derived scalar images, and consistently improved all the image scores. 
+Improvement in CC and MI measures were not uniform for all DWI derived scalar images; this was better illustrated by percent changes (Figures \ref{fig:APfigure5}; bottom rows). Different intermediate transforms differentially affected the scores in accordance with the degree of intensity correlations as measured in Figure \ref{fig:APfigure3}. Therefore, DSG transforms preferentially improved DSG, and ASG transforms improved ASG images. FA transforms, however, are notable, where CC scores across all DWI derived scalar images diverged for both CC and MI cost functions (Figures \ref{fig:APfigure5}, Figure \ref{fig:APSup2}; column 4). In fact, FA transforms substantially decreased DSG CC scores, and also negatively impacted DSG MI scores as well. FA transforms also showed exception to GFA, where it affected GFA negatively similar to DSG images. GFA behaved more like DSG images, where B0 and MDWI all favorably affected its CC and MI scores, while at the same time it was strongly affected by AP as well. However GFA seem to behave differently under autodeformation, as evident by its distinct MI changes (Figures \ref{fig:APfigure5}; column 5). AP transforms showed the least amount of variability when applied to DWI derived scalar images, and consistently improved all the image scores. 
 
 \subsubsection{AP-derived transforms show the most consistent improvements when applied to other image types}
 
-Between-group statistical comparisons of only $T_{\text{Affine}}$+SyN percent change revealed significant findings. Under the CC cost-function (Figure 6), percent change in $D_{\text{auto}}$ (Figure 6, bottom panel, column 3) showed that FA and GFA have the highest percent change, while AP has the lowest percent change. With MI scores, $D_{\text{auto}}$ showed that only GFA percent changes are significantly greater than others (Figure 6, bottom panel, column 4). GFA, however, also shows the greatest variability in distribution (Figure 6, top panel, column 4).  $D_{\text{all}}$ in contrast, showed that FA is an outlier where its percentage change is significantly lower than all other images; it is also notable that it shows a distinct bimodal distribution (Figure 6, top panel, column 1); GFA was shown to be significantly higher than B0, MDWI and FA, but not AP. MI percent changes are not significantly different from each other (Figure 6, bottom panel, column 2). MI cost-function results were similar to that of the CC cost-function (Supplementary 2). 
+Between-group statistical comparisons of only $T_{\text{Affine}}$+SyN percent change revealed significant findings. Under the CC cost-function (Figure \ref{fig:APfigure6}), percent change in $D_{\text{auto}}$ (Figure \ref{fig:APfigure6}, bottom panel, column 3) showed that FA and GFA have the highest percent change, while AP has the lowest percent change. With MI scores, $D_{\text{auto}}$ showed that only GFA percent changes are significantly greater than others (Figure \ref{fig:APfigure6}, bottom panel, column 4). GFA, however, also shows the greatest variability in distribution (Figure \ref{fig:APfigure6}, top panel, column 4).  $D_{\text{all}}$ in contrast, showed that FA is an outlier where its percentage change is significantly lower than all other images; it is also notable that it shows a distinct bimodal distribution (Figure \ref{fig:APfigure6}, top panel, column 1); GFA was shown to be significantly higher than B0, MDWI and FA, but not AP. MI percent changes are not significantly different from each other (Figure \ref{fig:APfigure6}, bottom panel, column 2). MI cost-function results were similar to that of the CC cost-function (Figure \ref{fig:APSup2}). 
 
 \section{Discussion}
 
@@ -106,13 +140,13 @@ This study presents a comparison of the DWI derived scalar image to use for T1 t
 
 \subsubsection{Registration improvements are biased towards similar image intensity groups}
 
-The log joint histogram showed that there is a degree of intensity orthogonality between FA, AP, and GFA as a group (ASG) compared to B0, ADWI and MDWI (DSG), suggesting that there is some connection between co-registration performance and intensity similarity (Figure 3). The greater the intensity similarities between the two images, the greater the effect of the same set of registration transforms. Intensity similarity is not the only factor, however, as evident by the exception to this rule in FA and GFA deformation results (Figure 5). This suggests that intensity orthogonality is not a limiting factor in registration transfer across these scalar images. Therefore, our hypothesis that there exists a better DWI intermediate scalar image that can improve multimodal registration is correct.
+The log joint histogram showed that there is a degree of intensity orthogonality between FA, AP, and GFA as a group (ASG) compared to B0, ADWI and MDWI (DSG), suggesting that there is some connection between co-registration performance and intensity similarity (Figure \ref{fig:APfigure3}). The greater the intensity similarities between the two images, the greater the effect of the same set of registration transforms. Intensity similarity is not the only factor, however, as evident by the exception to this rule in FA and GFA deformation results (Figure \ref{fig:APfigure5}). This suggests that intensity orthogonality is not a limiting factor in registration transfer across these scalar images. Therefore, our hypothesis that there exists a better DWI intermediate scalar image that can improve multimodal registration is correct.
 
 \subsubsection{Autodeformation is not sufficient to assess registration intermediate performance}
 
 Our study demonstrates clear differences in initial similarity scores (i.e. CC and MI) across different DWI scalar images when compared to T1, where MDWI had the highest initial CC and MI scores.  Moreover, the AP and MDWI images clearly outperformed the B0, FA, GFA and intermediates in visual inspections.
 
-As expected, autodeformation (e.g. FA to T1 registration applied to the FA image, from greek autos: self) yielded the best metric of similarity compared to when the transform was applied to other image types. The optimal T1-DWI co-registration performance of an intermediate image could be identified by the image’s deformation by its own transform. However, we show that only comparing the autodeformation results is not ideal (Figure 7, 8). Specifically, while the FA autodeformation (using $T_{\text{Affine}}$+SyN) performed better compared to all other autodeformations, registrations of other scalar images based on FA transformations clearly resulted in the worst results. Therefore, future comparisons of candidate intermediate images should consider not only the autodeformation, but also the ability of a transform to deform other scalar images. It is also worth noting that affine transformations marginally improve MI scores – which is expected as the head orientations within MR scanners usually do not deviate very far between acquisitions, but most registration improvements stem from corrections to DWI distortions through non-linear registration.
+As expected, autodeformation (e.g. FA to T1 registration applied to the FA image, from greek autos: self) yielded the best metric of similarity compared to when the transform was applied to other image types. The optimal T1-DWI co-registration performance of an intermediate image could be identified by the image’s deformation by its own transform. However, we show that only comparing the autodeformation results is not ideal (Figure \ref{fig:APSup1}, \ref{fig:APSup2}). Specifically, while the FA autodeformation (using $T_{\text{Affine}}$+SyN) performed better compared to all other autodeformations, registrations of other scalar images based on FA transformations clearly resulted in the worst results. Therefore, future comparisons of candidate intermediate images should consider not only the autodeformation, but also the ability of a transform to deform other scalar images. It is also worth noting that affine transformations marginally improve MI scores – which is expected as the head orientations within MR scanners usually do not deviate very far between acquisitions, but most registration improvements stem from corrections to DWI distortions through non-linear registration.
 
 The larger percent change improvements in FA and GFA can be explained by the ceiling effect of registration, where images that are initially more similar to the T1 anatomical image (e.g. MDWI or AP) would have less room for improvements compared to those that are less similar (e.g. FA or GFA). As such, the absolute difference in similarity scores should still be included in the final assessment of registration. It is also important to note that computational algorithms using CC and MI as the optimization metric in the registration process itself cannot fully characterize the goodness-of-fit of one set of images when matched with another. Therefore, our current use of these scores does not preclude the possibility that certain image sub-regions would be better registered using other scalar image types under specific conditions. Moreover, the method of estimating an undistorted DWI with reversed phase-encoding images may still be superior to the use of image intermediates, described here, when this approach is possible. Nonetheless, the post-processing use of intermediate images combined with reverse-phase corrected DWI may result in improved registrations.
 
@@ -125,68 +159,55 @@ One important limitation is that the DWI voxel sizes are not isotropic. For this
 \section{Conclusions}
 This study demonstrated that for T1-DWI co-registration, using AP as the DWI derived scalar image type resulted in improved registration performance. AP offers more consistent registration across DWI derived scalar images. AP requires the calculations of spherical harmonic coefficients as a preprocessing step, and therefore stabilizes when there are greater than 28 gradient directions. It is thereby unsuitable for some legacy DWI datasets acquired with fewer than 28 directions. MDWI can be readily obtained from existing DWI sequences, and is therefore suitable for all existing datasets. We generally recommend the use of AP where available. In the case where calculation of AP images is not possible, MDWI is a viable alternatives as T1-DWI co-registration intermediates. FA and GFA were the poorest performers, and we recommend not using them for registration purposes.
 
-\begin{figure}[H]
-\includegraphics[width=\linewidth]{figure1}
-\caption{Illustrated overview of the processing steps to measure DWI to T1 registration similarities.}
-\centering
-\label{fig:APfigure1}
-\end{figure}
+\afterpage{
 
- \begin{figure}[H]
- \includegraphics[width=\linewidth]{figure2}
- \caption{DWI derived scalar images (B0, MDWI, FA, GFA, and AP) comparing to T1 (top left).}
- \centering
- \label{fig:APfigure2}
- \end{figure}
+    \begin{figure}[p]
+    \includegraphics[width=\linewidth]{figure5}
+    \caption{Similarity scores between deformed dMRI scalar images and T1 following registrations with CC as cost function for SyN. 
+    Three steps of the registration process are plotted: Initial identity transformation (none), affine transformation (affine) and affine+SyN transformation (SyN).
+    Top panel shows similarity scores as measured by CC and MI, and bottom panel shows average percent change progressions of CC and MI across dMRI scalar images from \protect $T_{\text{Affine}}$ to \protect $T_{\text{Identity}}$, and from \protect $T_{\text{Affine}}$+SyN to \protect $T_{\text{Affine}}$. The error bars denote standard deviation across subjects.}
+    \centering
+    \label{fig:APfigure5}
+    \end{figure}
 
-\begin{figure}[H]
-\includegraphics[width=\linewidth]{figure3}
-\caption{Pair-wise joint log histogram of the DWI derived scalar images.}
-\centering
-\label{fig:APfigure3}
-\end{figure}
 
-\begin{figure}[H]
-\includegraphics[width=\linewidth]{figure4}
-\caption{Visual comparisons of MDWI to T1 co-registrations. 
-Shown are examples of MDWI images from one subject deformed using different registration transforms derived from the different image intermediates. 
-T1 is overlaid as thresholded outlines in red. 
-Primary differences in registration quality can be found in the brainstem (left and middle columns), and in the lateral ventricles, especially in the ventricular-caudate boundary (right column). }
-\centering
-\label{fig:APfigure4}
-\end{figure}
+    \clearpage
+    
+    \thispagestyle{empty}% empty page style (?)
+    \begin{landscape}% Landscape page
+    
+        \begin{figure}[p]
+        \includegraphics[width=\linewidth]{figure6}
+        \caption{
+        Percent changes of similarity score from \protect $T_{\text{Affine}}$+SyN to \protect $T_{\text{Identity}}$ with CC as cost function. Top row shows the violin plot distribution of CC and MI percent change under All Deformations and Autodeformations. Bottom row plots the statistically significant pair-wise correlations of the different transforms. 
+        Under All Deformations (\protect $D_{\text{all}}$), CC percent change of FA is shown to be significantly lower (p<0.05) than that of all other transform types. GFA can be observed to have higher percent change than that of B0, MDWI, and FA. Under Autodeformations (\protect $D_{\text{auto}}$), CC percent change of FA and GFA are significantly higher than others, while AP has lower percent change. MI shows little percentage between all the images; GFA shows significantly differences under \protect $D_{\text{auto}}$, but also shows high variability.}
+        \centering
+        \label{fig:APfigure6}
+        \end{figure}
+    \end{landscape}
+    
+    \clearpage
 
-\begin{figure}[H]
-\includegraphics[width=\linewidth]{figure5}
-\caption{Similarity scores between deformed dMRI scalar images and T1 following registrations with CC as cost function for SyN. 
-Three steps of the registration process are plotted: Initial identity transformation (none), affine transformation (affine) and affine+SyN transformation (SyN).
-Top panel shows similarity scores as measured by CC and MI, and bottom panel shows average percent change progressions of CC and MI across dMRI scalar images from \protect $T_{\text{Affine}}$ to \protect $T_{\text{Identity}}$, and from \protect $T_{\text{Affine}}$+SyN to \protect $T_{\text{Affine}}$. The error bars denote standard deviation across subjects.}
-\centering
-\label{fig:APfigure5}
-\end{figure}
 
-\begin{figure}[H]
-\includegraphics[width=\linewidth]{figure6}
-\caption{
-Percent changes of similarity score from \protect $T_{\text{Affine}}$+SyN to \protect $T_{\text{Identity}}$ with CC as cost function. Top row shows the violin plot distribution of CC and MI percent change under All Deformations and Autodeformations. Bottom row plots the statistically significant pair-wise correlations of the different transforms. 
-Under All Deformations (\protect $D_{\text{all}}$), CC percent change of FA is shown to be significantly lower (p<0.05) than that of all other transform types. GFA can be observed to have higher percent change than that of B0, MDWI, and FA. Under Autodeformations (\protect $D_{\text{auto}}$), CC percent change of FA and GFA are significantly higher than others, while AP has lower percent change. MI shows little percentage between all the images; GFA shows significantly differences under \protect $D_{\text{auto}}$, but also shows high variability.}
-\centering
-\label{fig:APfigure6}
-\end{figure}
+    \begin{figure}[p]
+    \includegraphics[width=\linewidth]{sup1}
+    \caption{Similarity scores between deformed dMRI scalar images and T1 following registrations with MI as cost function for SyN. 
+    Three steps of the registration process are plotted: Initial identity transformation (none), affine transformation (affine) and affine+SyN transformation (SyN).
+    Top panel shows similarity scores as measured by CC and MI, and bottom panel shows average percent change progressions of CC and MI across dMRI scalar images from \protect $T_{\text{Affine}}$ to \protect $T_{\text{Identity}}$, and from \protect $T_{\text{Affine}}$+SyN to\protect  $T_{\text{Affine}}$.}
+    \centering
+    \label{fig:APSup1}
+    \end{figure}
 
-\begin{figure}[H]
-\includegraphics[width=\linewidth]{sup1}
-\caption{Similarity scores between deformed dMRI scalar images and T1 following registrations with MI as cost function for SyN. 
-Three steps of the registration process are plotted: Initial identity transformation (none), affine transformation (affine) and affine+SyN transformation (SyN).
-Top panel shows similarity scores as measured by CC and MI, and bottom panel shows average percent change progressions of CC and MI across dMRI scalar images from \protect $T_{\text{Affine}}$ to \protect $T_{\text{Identity}}$, and from \protect $T_{\text{Affine}}$+SyN to\protect  $T_{\text{Affine}}$.}
-\centering
-\label{fig:APfigure7}
-\end{figure}
-
-\begin{figure}[H]
-\includegraphics[width=\linewidth]{sup2}
-\caption{Percent changes of similarity score from \protect $T_{\text{Affine}}$+SyN to \protect $T_{\text{Identity}}$ with MI as cost function. Top row shows the violin plot distribution of CC and MI percent change under All Deformations and Autodeformations. Bottom row plots the statistically significant pair-wise correlations of the different transforms.
-Under all deformations ( \protect$D_{\text{all}}$), CC percent change of FA is shown to be significantly lower (p<0.05) from that of other transform types. In autodeformations (\protect$D_{\text{auto}}$). FA has higher percent change. MI percent changes show little differences, and once again highlights the high variability of GFA. }
-\centering
-\label{fig:APfigure8}
-\end{figure}
+    \clearpage
+    
+    \thispagestyle{empty}% empty page style (?)
+    \begin{landscape}% Landscape page
+        \begin{figure}[p]
+        \includegraphics[width=\linewidth]{sup2}
+        \caption{Percent changes of similarity score from \protect $T_{\text{Affine}}$+SyN to \protect $T_{\text{Identity}}$ with MI as cost function. Top row shows the violin plot distribution of CC and MI percent change under All Deformations and Autodeformations. Bottom row plots the statistically significant pair-wise correlations of the different transforms.
+        Under all deformations ( \protect$D_{\text{all}}$), CC percent change of FA is shown to be significantly lower (p<0.05) from that of other transform types. In autodeformations (\protect$D_{\text{auto}}$). FA has higher percent change. MI percent changes show little differences, and once again highlights the high variability of GFA. }
+        \centering
+        \label{fig:APSup2}
+        \end{figure}
+    \end{landscape}
+}
