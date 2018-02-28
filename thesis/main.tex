@@ -14,6 +14,7 @@
 \usepackage{amsfonts}
 \usepackage{apacite}
 \usepackage{bibentry}
+\usepackage{glossaries}
 \usepackage{float}
 \usepackage{pdflscape}
 \usepackage{afterpage}
@@ -25,6 +26,11 @@
 \newcommand{\noteDavid}[1]{\todo[color=blue!25]{DAVID: #1}}
 \newcommand{\noteMoji}[1]{\todo[color=yellow!25]{MOJI: #1}}
 
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.7}
+
 % \let\oldsection\section
 % \renewcommand\section{\clearpage\oldsection}
 
@@ -32,6 +38,7 @@
 \setcounter{tocdepth}{4}
 \flushbottom
 
+\makeglossaries
 
 \begin{document}
 \nobibliography*
@@ -48,6 +55,9 @@
 %\frontmatter
 \maketitle
 \tableofcontents
+
+\input{./contents/glossary}
+\printglossary
 
 \end{preliminary}
 
