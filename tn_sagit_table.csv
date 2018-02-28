@@ -1,4 +1,4 @@
-region,side,accuracy,precision,f1,measure,start,end,length
+region,type,accuracy,precision,f1,measure,start,end,length
 CNV,R,0.86,0.9,0.86,FA,17,23,7
 CNV,R,0.79,0.84,0.77,MD,6,23,18
 CNV,R,0.79,0.81,0.76,RD,3,20,18
