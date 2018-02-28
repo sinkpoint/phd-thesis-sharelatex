@@ -6,7 +6,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\graphicspath{ {images/} }
+\graphicspath{ {thesis/images/} }
 \usepackage{url}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -14,7 +14,6 @@
 \usepackage{amsfonts}
 \usepackage{apacite}
 \usepackage{bibentry}
-\usepackage{glossaries}
 \usepackage{float}
 \usepackage{pdflscape}
 \usepackage{afterpage}
@@ -22,6 +21,19 @@
 \usepackage{setspace}
 \usepackage[export]{adjustbox}
 \usepackage[authormarkup=superscript,]{changes}
+
+\usepackage[acronym,toc]{glossaries}
+\makeglossaries
+
+%\include{./contents/glossary}
+
+\newglossaryentry{utc}{name=utc,description={Coordinated Universal Time}}
+\newglossaryentry{adt}{name=adt,description={Atlantic Daylight Time}}
+\newglossaryentry{est}{name=est,description={Eastern Standard Time}}
+
+\newacronym{tn}{TN}{Trigeminal Neuralgia}
+
+
 \usepackage[colorinlistoftodos, textsize=tiny]{todonotes}
 \newcommand{\noteDavid}[1]{\todo[color=blue!25]{DAVID: #1}}
 \newcommand{\noteMoji}[1]{\todo[color=yellow!25]{MOJI: #1}}
@@ -38,7 +50,6 @@
 \setcounter{tocdepth}{4}
 \flushbottom
 
-\makeglossaries
 
 \begin{document}
 \nobibliography*
@@ -56,28 +67,33 @@
 \maketitle
 \tableofcontents
 
-\input{./contents/glossary}
-\printglossary
-
 \end{preliminary}
 
-%\mainmatter
+\glsaddall
+\glsadd{utc}\glsadd{adt}\glsadd{est}
 
-\include{./contents/abstract}
-\include{./contents/acknowledgements}
-\include{./contents/literature}
-\include{./contents/hypotheses}
-\include{./contents/paper1}
-\include{./contents/ap_paper}
-\include{./contents/sagit}
-\include{./contents/tn_sagit_cover}
-\include{./contents/discussions}
+\printglossary[type=\acronymtype]
+\printglossary
+
+%\mainmatter
+\Gls{tn}
+
+\include{./thesis/contents/abstract}
+\include{./thesis/contents/acknowledgements}
+\include{./thesis/contents/literature}
+\include{./thesis/contents/hypotheses}
+\include{./thesis/contents/paper1}
+\include{./thesis/contents/ap_paper}
+\include{./thesis/contents/sagit}
+\include{./thesis/contents/tn_sagit_cover}
+\include{./thesis/contents/discussions}
+
 
 %\backmatter
 % bibliography, glossary and index would go here.
 %\addcontentsline{toc}{chapter}{Bibliography}
 
 \bibliographystyle{apacite}
-\bibliography{mendeley,external_refs}
+\bibliography{./mendeley,thesis/external_refs}
 
 \end{document}
