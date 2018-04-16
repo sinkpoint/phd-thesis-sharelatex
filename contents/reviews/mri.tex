@@ -44,7 +44,7 @@ field} \label{fig:externalB0}
 \end{center}
 \end{figure}
 
-Protons aligned in the parallel alignment are more preferred as it has a lower energy state than in anti-parallel orientation. The energy E of a magnetic moment $\vec{\mu}$ when in a magnetic field $B_0$ is given by: $E=-\vec{\mu}\cdot \textbf{B}_0=-\mu_z B_0=-\gamma m \hbar B_0$. The lower energy state of protons corresponding to m = +1/2 in a static magnetic field $B_0$ is $E(\frac{1}{2})=-\frac{1}{2}\gamma \hbar B_0$. The higher energy state of protons corresponding to m =-1/2 is given by $E(-\frac{1}{2})=\frac{1}{2}\gamma \hbar B_0$.
+Protons aligned in the parallel alignment are more preferred as they have a lower energy state than protons in anti-parallel orientation. The energy E of a magnetic moment $\vec{\mu}$ when in a magnetic field $B_0$ is given by: $E=-\vec{\mu}\cdot \textbf{B}_0=-\mu_z B_0=-\gamma m \hbar B_0$. The lower energy state of protons corresponding to m = +1/2 in a static magnetic field $B_0$ is $E(\frac{1}{2})=-\frac{1}{2}\gamma \hbar B_0$. The higher energy state of protons corresponding to m =-1/2 is given by $E(-\frac{1}{2})=\frac{1}{2}\gamma \hbar B_0$.
 Consequently, the energy differences between two quantum states can be calculated as $\bigtriangleup E = \gamma \hbar B_0$ (Figure \ref{fig:energy}).
 
 \begin{figure}[htb]
@@ -98,7 +98,7 @@ $M_0$ is the magnetic moment at equilibrium.
 T2 relaxation is so named after the time constant of phase decoherence of the transverse magnetic moment. 
 
 Immediate after excitation, the phase precessions are synchronous, and therefore are in \textit{phase coherence}.  
-However due to various reasons, the various spins begin to lose coherence, and their total sum magnetization $M_xy$ diminishes. 
+However due to the following reasons, the various spins begin to lose coherence, and their total sum magnetization $M_xy$ diminishes. 
 
 Phase coherence is lost in two ways:
 \begin{enumerate}
@@ -109,7 +109,7 @@ $$M_{xy} =M_{xymax} e^{-t/T2}$$
 where T2 is the duration of time for the transverse magnetization to decay to 37$\%$ of its original magnitude. 
 T2 is always less than or equal to T1.
 
-\item There are intrinsic inhomogeneities by the magnetic field generator, and the scanning subject. These intrinsic properties contribute to the dephasing, and has a shorter time decay than T2. This type of decay time constant is named T2*  (Figure \ref{fig:T1T2}(C)). The loss of the MR signal due to T2* is called\textit{ free induction decay} (FID). T2* is defined as follows: 
+\item There are intrinsic inhomogeneities by the main static magnetic field generator, and the scanning subject. These intrinsic properties contribute to the dephasing, and has a shorter time decay than T2. This type of decay time constant is named T2*  (Figure \ref{fig:T1T2}(C)). The loss of the MR signal due to T2* is called\textit{ free induction decay} (FID). T2* is defined as follows: 
 $$ \frac{1}{T_2^*} = \frac{1}{T_2} + \frac{1}{T_2inhomo}$$ 
 \end{enumerate}
 
@@ -126,35 +126,35 @@ $$ \frac{1}{T_2^*} = \frac{1}{T_2} + \frac{1}{T_2inhomo}$$
 
 MRI signal intensity depends primarily on three parameters: 
 \begin{itemize}
-\item Proton density: the number of excitable spins per unit volume, which determines the maximum amount of signal that can be measured from the tissue. It can be measured by minimizing T1 and T2 times. 
+\item Proton density: the number of excitable spins per unit volume, which determines the maximum amount of signal that can be measured from the tissue. It can be measured by minimizing T1 and maximizing T2 times. 
 \item T1 time: the amount time for $M_xy$ to recover to $M_z$, to be ready for re-excitation.
 \item T2 time: the amount of time for $M_xy$ signal to fade under decoherence. 
 \end{itemize}
-The contrast in brain tissues of the resulting MR image can be tuned by adjusting these three parameters in pulse sequence design.
+The contrast in brain tissues of the resulting MR image can be tuned by adjusting T1  and T2 parameters in pulse sequence design.
 
 \paragraph{Repetition Time}
 T1 contrast is adjusted by tuning repetition time (TR), which is the length of relaxation interval between excitation pulses. When TR is long (\textgreater 1500 ms), $M_z$ recovers totally, and therefore subsequent excitation will again retain maximal signal strength. When the TR is short (
 \textless 600 ms), the $M_z$ has not entirely recovered, and the next excitation pulse will not be able to regain signal strength. Different tissues have different intrinsic T1 differences, and will show strong contrast under short TR. Therefore short TR are said to be T1 weighted. 
 
 \paragraph{Echo Time}
-MR sequences have a gradient field which is used to control field inhomogeneities and to encode spatial origin. The gradients also contribute to spin dephasing. Therefore a refocusing pulse is necessary to measure MR signals adequately. The time delay between refocusing and the measured signal under phase coherence (spin echo) is known as echo time (TE). When TE is short ($<$ 30 ms), there are little signal differences between tissue types; when TE is long ( $\geq$ 60 ms ), the intrinsic tissue differences will allow good contrast in the resulting image. Therefore long TE is said to be T2 weighted.
+MR sequences have a gradient field which is used to encode spatial origin. The gradients also contribute to spin dephasing. In spin echo imaging, a 90 deg pulse and a 180 deg refocusing pulse are needed to measure MR signals adequately. The time delay between the first pulse and the measured signal under phase coherence (spin echo) is known as echo time (TE). When TE is short ($<$ 30 ms), and TR is short, the image is said to be T1 weighted; when TE is long ( $\geq$ 60 ms ), and TR is long, the image is said to be T2-weighted. 
 
 \begin{figure}[htb]
 \begin{center}
 \begin{tabular}{c}
 \includegraphics[width=\textwidth]{mri/spin-echo.pdf}
 \end{tabular}
-\caption{Illustration of the process of spin-echo. Initially, the spin precesses about the B0 field under steady-state. When a 90deg RF pulse is applied, the spins orients towards the xy-plane. When the RF pulse is switched off, the spins now relaxes towards the z-axis, and the spin undergoes phase decoherence. A 180 degrees flip angle pulse is applied to prevent spin saturation, and then a refocusing pulse is applied to bring spins back into coherence.  } \label{fig:spin-echo}
+\caption{Illustration of the process of spin-echo. Initially, the spins orients to wards B0 field under steady-state. When a 90deg RF pulse is applied, the spins orients to the xy-plane. When the RF pulse is switched off, the spins undergoe phase decoherence. A 180 degrees refocusing pulse is applied to bring spins back into coherence, at which point in time the peak of an "echo" occurs.  } \label{fig:spin-echo}
 \end{center}
 \end{figure}
 
-Typically, T1-weighted spin echo (SE)  sequence is acquired with TR/TE at 340/13 ms; T2-weighted fast spin echo (FSE) at TR/TE of 3500/120 ms. 
+Typically, T1-weighted spin echo (SE)  sequence is acquired with TR \textless 800 ms, TE \textless 20 ms; T2-weighted fast spin echo (FSE) at TR \textgreater 2000 ms, TE \textgreater 60 ms. 
 In the case of T1-weighted MRI, images are created with short TE and short TR times. They can differentiate fat from water - with fat brighter and water darker (\url{www.mr-tip.com}) by using a gradient echo (GRE) sequence. In the brain T1-weighted scans provide good gray matter/white matter contrast. In addition, the image contrast can be increased with the use of an inversion pulse as in an MP-RAGE sequence. Due to short TR, this scan can be run very quickly, allowing the collection of high resolution 3D structural image (Figure \ref{fig:T1T2PD}, Left). These structural images can provide detailed information on the brain's shape and size, and provide the base for cortical surface reconstruction and segmentation. 
 
-The T2-weighted sequence uses a long TR and long TE. The T2-weighted sequence can be employed as a dual echo sequence. Like the T1-weighted scan, fat is
-differentiated from water, but with fat dark and water bright (Figure \ref{fig:T1T2PD}, Middle).  
+The T2-weighted sequence uses a long TR and long TE. The T2-weighted sequence can be employed as a multi-echo sequence. Like the T1-weighted scan, fat is
+differentiated from water in single echo sequences, but with fat dark and water bright (Figure \ref{fig:T1T2PD}, Middle).  
 
-The first or shorter echo ($T_E<30msec$) is proton density (PD) weighted or a mixture of T1 and T2. This image can provide good contrast of tissue and CSF, thus very helpful for evaluating periventricular pathology (Figure \ref{fig:T1T2PD}, Right). $T_2^*$-weighted scans use a gradient echo (GRE) sequence, with long TE and long TR. It is prone to susceptibility losses at air/tissue boundaries, but can increase contrast for certain types of tissue, such as venous blood. It is used for functional MRI detection allowing people to visualize and map the parts of the brain used to perform tasks. 
+Another type of image with shorter echo ($T_E<30msec$) is proton density (PD) (Figure \ref{fig:T1T2PD}, right) weighted. This image provides poor contrast of tissue and CSF, but good bright contrast against lesions, thus very helpful for evaluating periventricular pathology . $T_2^*$-weighted scans use a gradient echo (GRE) sequence, which uses only one RF pulse and gradient reversal. It is prone to susceptibility losses at air/tissue boundaries, but can increase contrast for certain types of tissue, such as venous blood. It is used for functional MRI detection allowing people to visualize and map the parts of the brain used to perform tasks. 
 
 \subsubsection{3D encoding}
 
@@ -165,7 +165,7 @@ Therefore, to allow slice discrimination, the magnetic field along the z-axis is
 Once the spins are excited and precess in the xy-plane, two additional gradients are applied to allow discrimination of signal measures per slice. 
 
 \begin{itemize}
-\item Phase encoding: The phase encoding gradient is applied in the y-direction. It alters the Larmor frequency of the spins based the location of the y-axis, and results in phase shifts of the spins relative to each other. The phase shift is determined by the duration and amplitude of the gradient, when the gradient is switched off, all spins return to their initial rate of precession, but maintains the relative phase shift. 
+\item Phase encoding: The phase encoding gradient is applied in the y-direction. It temporarily alters the Larmor frequency of the spins based their location of the y-axis, and results in phase shifts of the spins relative to each other. The phase shift is determined by the duration and amplitude of the gradient, when the gradient is switched off, all spins return to their initial rate of precession, but maintains the relative phase shift. 
 \item Frequency encoding: The frequency encoding gradient is applied on the x-direction. This applies a magnetic field that increases in strength from right to left. The change in Larmor frequency alters the precession speed of the spins such that the spins towards the right precess faster than that of the left. The MR signal collected represents the entire frequency spectrum of the spins. 
 \end{itemize}
 
@@ -173,7 +173,7 @@ The measured MR signal with both encoding methods allows recovery of spatial inf
 
 \paragraph{K-Space}
 
-The collected MR data are encoded in a mathematical space termed the k-space. The k-space is a two-dimensional feature space, where the x-axis $k_x$ represent the measured frequency domain, and $k_y$ the phase domain. Each step in $k_y$ represents a single phase encoding step. The x-axis origin $k_x=0$ is the gradient iso-center, and the frequency distribution is symmetric about the x-origin. The 2D-FT operation is applied to the k-space to transform the frequency domain information into an image. 
+The collected MR data are encoded in a mathematical space termed the k-space. The k-space is a two-dimensional feature space, where the x-axis $k_x$ represent the measured frequency domain, and $k_y$ the phase domain. Each step in $k_y$ represents a single phase encoding step. The x-axis origin $k_x=0$ is the gradient iso-center, where the gradient magnetic field equals to zero, and the frequency distribution is symmetric about the x-origin. The 2D-FT operation is applied to the k-space to transform the frequency domain information into an image. 
 
 \begin{figure}[htb]
 \begin{center}
