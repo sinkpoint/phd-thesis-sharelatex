@@ -1,4 +1,4 @@
-\documentclass[12pt]{ut-thesis}
+\documentclass[12pt,oneandahalfspaced]{ut-thesis}
 %\documentclass[a4paper,12pt]{book}
 
 \usepackage{setspace}
@@ -59,8 +59,16 @@
 
 %\frontmatter
 \maketitle
+
 \tableofcontents
-\printglossary[type=\acronymtype, nonumberlist]
+\printglossary[type=\acronymtype, nonumberlist, title={List of Abbreviations}]
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+\cleardoublepage
 \end{preliminary}
 
 
