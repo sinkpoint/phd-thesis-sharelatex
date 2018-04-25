@@ -73,7 +73,7 @@ For the purpose of quantifying the trigeminal pathways, a centroid was defined f
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{figure-path-analysis.pdf}
-\caption{Diagram for the along-the-tract data processing.
+\caption[Diagram for the along-the-tract data processing.]{Diagram for the along-the-tract data processing.
 Process starts with 2 specific goals: 1) Derive the spatial structure that best represent the merged streamlines, 2) Deriving sub-regional tissue information from these. A) First the best-fit curve is obtained to represent the collective streamlines, which is defined as the centroid. B) In areas where this can be automated, Quickbundles was used. For the CN V, the centroid was defined manually given the unpredictability of the lengths of streamlines. C) Representative drawing of the centroid onto the streamline points, representing the collective spatial information. The centroid is resampled to 30 subpoints. D) To derive tissue information, a nearest neighbor algorithm was used to assign streamline points to form 30 divisions. E) The average diffusivity metrics was pooled for each of the 36 subjects at each division. The colours represent the spatial position of each of the 30 divisions, and the streamline points that were assigned to each particular division. The data was then used for machine learning pipeline (see Figure \ref{fig:GPfigure-gp-train}).
 }
 \label{fig:GPfigure-method-centroid}
@@ -89,7 +89,7 @@ For each window, the subjects were split into train and validation sets using st
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{figure-GP-training.pdf}
-\caption{Diagram for generating the best performing classifier for a particular window size. The data was derived from Figure \ref{fig:GPfigure-method-centroid}, where the top bar represents data from each centroid division, and each position represents the anatomical region of the trigeminal pathways within it. Each window was used to generate 10 GP models with 10-fold cross-validation, an average accuracy was determined at each window position. Finally the window position with the best accuracy was selected. The same process is repeated on every diffusivity metric, and for all window sizes ranging from 5 to 30. }
+\caption[Diagram for generating the best performing classifier for a particular window size.]{Diagram for generating the best performing classifier for a particular window size. The data was derived from Figure \ref{fig:GPfigure-method-centroid}, where the top bar represents data from each centroid division, and each position represents the anatomical region of the trigeminal pathways within it. Each window was used to generate 10 GP models with 10-fold cross-validation, an average accuracy was determined at each window position. Finally the window position with the best accuracy was selected. The same process is repeated on every diffusivity metric, and for all window sizes ranging from 5 to 30. }
 \label{fig:GPfigure-gp-train}
 \end{figure}
 
@@ -109,14 +109,14 @@ S1 streamlines reliably extended into the face region of the S1 cortex (Figure \
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{view-decussation.png}
-\caption{Focused view of the TPT and its decussation, prior to the generation of centroids (see Figure \ref{fig:GPfigure-method-centroid} A). Colours were chosen arbitrarily to denote left and right pathways, however the colour intensity represents FA values as depicted by FA scale, top right corner. Red: Right TPT; Blue: Left TPT. Note the Right TPT appears to divert around the left TPT bundle. }
+\caption[Focused view of the TPT and its decussation, prior to the generation of centroids.]{Focused view of the TPT and its decussation, prior to the generation of centroids (see Figure \ref{fig:GPfigure-method-centroid} A). Colours were chosen arbitrarily to denote left and right pathways, however the colour intensity represents FA values as depicted by FA scale, top right corner. Red: Right TPT; Blue: Left TPT. Note the Right TPT appears to divert around the left TPT bundle. }
 \label{fig:GPfigure2}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{view-left-right.png}
-\caption{Visual representation of the course of the trigeminal pathway from its cisternal component to the face area of the sensory S1 cortex. Images obtained prior to the generation of centroids (see Figure \ref{fig:GPfigure-method-centroid} A). FA is depicted by the colour intensities (Red: right side; Blue: left side). The trigeminal nerves, including the cisternal segments are seen in a coronal perspective (CN V), following which two pathways can be seen. The first pathway appears to head into the spine, while the second pathway consists of the TPT. Following the decussation, the fibers proceed to the area of the sensory thalamus and from there to the cortical sensory area S1.}
+\caption[Visual representation of the course of the trigeminal pathway from its cisternal component to the face area of the sensory S1 cortex.]{Visual representation of the course of the trigeminal pathway from its cisternal component to the face area of the sensory S1 cortex. Images obtained prior to the generation of centroids (see Figure \ref{fig:GPfigure-method-centroid} A). FA is depicted by the colour intensities (Red: right side; Blue: left side). The trigeminal nerves, including the cisternal segments are seen in a coronal perspective (CN V), following which two pathways can be seen. The first pathway appears to head into the spine, while the second pathway consists of the TPT. Following the decussation, the fibers proceed to the area of the sensory thalamus and from there to the cortical sensory area S1.}
 \label{fig:GPfigure3}
 \end{figure}
 
@@ -129,7 +129,7 @@ The FA classifier achieved 75\% accuracy in differentiating affected versus unaf
 \begin{figure}[p]
 \centering
 \includegraphics[width=1.2\textwidth,center]{figure-GP-CNV.pdf}
-\caption{CN V classifier performances. This figure consists of 3 panels. Panel A, y axis represents the anatomical subregions of the trigeminal nerve as defined by the centroid subdivisions (see Figure \ref{fig:GPfigure-method-centroid}). Panel A, x-axis denotes the accuracy of the classifiers (scale of 0-1, with 1 representing 100\%)). Each diffusivity is denoted with respect to the window size (see Figure \ref{fig:GPfigure-method-centroid}) and position along the centroid where the accuracy is derived from. 3 instances are studied: comparison of left (unaffected) vs. control (average of both trigeminal nerves), comparison of right (affected) vs. control and comparison of left (unaffected) vs. right (affected). The colours for the diffusivity in each panel in A is arbitrary. Panel B is a heatmap (raw visualization) of FA values of the corresponding centroid positions. Panel C shows the centroid and point assignments for anatomical reference. The colours of the points correspond to their respective subdivision position as described in figure \ref{fig:GPfigure-method-centroid} and figure \ref{fig:GPfigure-method-centroid}} throughout the figure, the position of the centroid subdivisions are aligned and expressed with respect to the anatomical position as per panel B.
+\caption[CN V classifier performances.]{CN V classifier performances. This figure consists of 3 panels. Panel A, y axis represents the anatomical subregions of the trigeminal nerve as defined by the centroid subdivisions (see Figure \ref{fig:GPfigure-method-centroid}). Panel A, x-axis denotes the accuracy of the classifiers (scale of 0-1, with 1 representing 100\%)). Each diffusivity is denoted with respect to the window size (see Figure \ref{fig:GPfigure-method-centroid}) and position along the centroid where the accuracy is derived from. 3 instances are studied: comparison of left (unaffected) vs. control (average of both trigeminal nerves), comparison of right (affected) vs. control and comparison of left (unaffected) vs. right (affected). The colours for the diffusivity in each panel in A is arbitrary. Panel B is a heatmap (raw visualization) of FA values of the corresponding centroid positions. Panel C shows the centroid and point assignments for anatomical reference. The colours of the points correspond to their respective subdivision position as described in figure \ref{fig:GPfigure-method-centroid} and figure \ref{fig:GPfigure-method-centroid}} throughout the figure, the position of the centroid subdivisions are aligned and expressed with respect to the anatomical position as per panel B.
 \label{fig:GPfigure4}
 \end{figure}
 

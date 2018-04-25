@@ -321,7 +321,7 @@
       \vfill
       A thesis submitted in conformity with the requirements\\
       for the degree of {\@degree}\\
-      Graduate Department of {\@department}\\
+      {\@department}\\
       University of Toronto\\
       \vfill
       {\copyright} Copyright {\@gradyear} by {\@author}\\
@@ -341,7 +341,7 @@
       {\@title}\\[2ex]
       {\@author}\\
       {\@degree}\\
-      Graduate Department of {\@department}\\
+      {\@department}\\
       University of Toronto\\
       {\@gradyear}\\
    \end{center}
