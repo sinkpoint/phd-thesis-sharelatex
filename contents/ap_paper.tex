@@ -36,14 +36,14 @@ The second set of scalar images is derived by taking the mean of the DWI dataset
 
 Fractional anisotropy (FA) image \cite{Basser2011c} is also commonly used as a registration intermediate. Due to its high intensity in white matter regions, FA is commonly used with probabilistic tractography registration to standard T1 space \cite{Mansour2013,Salomons2012}. Research also shows that normalized cross-correlation and template matching can improve FA-T1 registration \cite{Malinsky2013}. 
 
-An alternative to FA is to use the generalized fractional anisotropy (GFA) image. Since FA shows low intensity in cross-fiber regions, it may adversely affect registration in those areas. GFA can properly characterize crossing-fiber intensities, and therefore may be a better candidate than FA. The GFA is computed from the SH coefficients of spherical harmonics based methods such as Q-ball, where the diffusion orientation distribution function (ODF) is denoted as  $\Psi(u)$ \cite{Tuch2004}, such that:
+An alternative to FA is to use the generalized fractional anisotropy (GFA) image. Since FA shows low intensity in cross-fibre regions, it may adversely affect registration in those areas. GFA can properly characterize crossing-fibre intensities, and therefore may be a better candidate than FA. The GFA is computed from the SH coefficients of spherical harmonics based methods such as Q-ball, where the diffusion orientation distribution function (ODF) is denoted as  $\Psi(u)$ \cite{Tuch2004}, such that:
 \begin{equation}
 GFA = \sqrt{\frac{n \sum_{i=1}^{n}( \Psi(u_i) - \langle\Psi\rangle)^2} {(n-1) \sum_{i=1}^{n}\Psi(u_i)^2}}
 \end{equation}
 
 where $n$ is the number of gradient directions.
 
-Another promising candidate is the anisotropic power (AP) image \cite{DellAcqua2014}. AP have similar visual intensity to T$_1$, and can be computed from HARDI acquisitions without any acquisition modifications. Since AP are derived from the SH model, it is also capable of proper cross-fiber region characterization. AP images are derived from the even harmonic orders ($l$) of SH coefficients \cite{Descoteaux2006,Frank2002} and are defined as
+Another promising candidate is the anisotropic power (AP) image \cite{DellAcqua2014}. AP have similar visual intensity to T$_1$, and can be computed from HARDI acquisitions without any acquisition modifications. Since AP are derived from the SH model, it is also capable of proper cross-fibre region characterization. AP images are derived from the even harmonic orders ($l$) of SH coefficients \cite{Descoteaux2006,Frank2002} and are defined as
 \begin{equation}
 AP = \sum_{l=2,4,...} \frac{1}{2l+1}\sum_{m=-l}^{l} \lvert a_{l,m}\lvert^2
 \end{equation}

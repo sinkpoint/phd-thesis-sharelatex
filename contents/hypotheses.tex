@@ -1,16 +1,18 @@
 \chapter{Aims/Hypotheses}
 
-The general aim of this thesis is to introduce quantitative measures for the study of trigeminal nerve microstructure in health and disease. This necessitates detailed \textit{in-vivo} microstructural analysis of the nerve and its associated pathways, to determine how the microstructure is altered in idiopathic TN, symptomatic TN as a result of MS, and healthy controls. 
+This thesis consists of two components: 1) to develop and validate methodology to study specific white matter in individuals and in groups of individuals, and 2) to apply the developed methods to gain insight into the changes in the trigeminal system in TN. The methodology developed for group analysis lays the foundation for future clinical applications. 
 
-With an increasing number of subjects, single subject analysis becomes cumbersome. Critical methodological advances are necessary for the feasibility of the general aim. These include the development a group diffusion tractography tool, determination of the most robust intra-subject imaging co-registration strategy, and validation of the group tractography output across a variety of tractography algorithms and white matter anatomy. 
+The general goal was to introduce quantitative measures for the study of trigeminal nerve microstructure in health and disease. This necessitated detailed \textit{in-vivo} microstructural analysis of the nerve and its associated pathways, to determine how the microstructure is altered in idiopathic TN, symptomatic TN as a result of MS, and healthy controls. 
 
-Lastly, these methodological advances will be applied to the large-scale study of TN versus healthy control.  The more considerable amount of data output from the methodology will enable the application of machine learning towards the aim of quantifying the specific group-wise diffusivity changes along the trigeminal sensory white matter pathways, in order to identify specific diffusivity pattern that differentiates between TN and non-TN. The roadmap and rationale for the specific studies are described below.
+With an increasing number of subjects, single subject analysis can become cumbersome. Critical methodological advances were necessary for the feasibility of the general aim. These include the development a group diffusion tractography tool, determination of the most robust intra-subject imaging co-registration strategy, and validation of the group tractography output across a variety of tractography algorithms and white matter anatomy. 
+
+Lastly, the methodological advances of this thesis were applied to the large-scale study of TN versus healthy control.  The considerable amount of data output from the methodology  enabled the application of machine learning towards the aim of quantifying the specific group-wise diffusivity changes along the trigeminal sensory white matter pathways, and in order to identify specific diffusivity pattern differentiating TN from healthy controls. The roadmap and rationale for the specific studies are described below.
 
 \section{Study I: Diffusivity signatures characterize trigeminal neuralgia associated with multiple sclerosis}
-MS-TN is thought to relate to MS lesions in the brainstem, in the area of the trigeminal fibers in the pons. However the exact anatomical relationship between the lesions and trigeminal nerve within the brainstem has been difficult to quantify, due to the limited contrast and resolution in standard MRI and the variability of MS lesion across individuals. Previous single-tensor tractography studies of CN V have been limited to the imaging of the cisternal nerve segment. In this study, we use multi-tensor tractography with two aims: first, we focus on the delineation of the brainstem sub-segments of CN V; and the second, on the feasibility of applying multi-tensor tractography in the study of diffusivity differences in TN and MS-TN. 
+MS-TN is thought to relate to MS lesions in the brainstem, in the area of the trigeminal fibres in the pons. However the exact anatomical relationship between the lesions and trigeminal nerve within the brainstem has been difficult to quantify, due to the limited contrast and resolution in standard MRI and the variability of MS lesion across individuals. Previous single-tensor tractography studies of CN V have been limited to the imaging of the cisternal nerve segment. In this study, we use multi-tensor tractography with two aims: first, we focus on the delineation of the brainstem sub-segments of CN V; and the second, on the feasibility of applying multi-tensor tractography in the study of diffusivity differences in TN and MS-TN. 
 
 \subsection{Main Aim} 
-Establish the feasibility of multi-tensor diffusion tractography to delineating the cisternal, root entry zone and brainstem segments of CN V and how diffusivity changes in these sub-regions correlate with pain in MS-TN.
+Establish the feasibility of multi-tensor diffusion tractography to delineate the cisternal, root entry zone and brainstem segments of CN V and how diffusivity alterations in these sub-regions correlate with pain in MS-TN.
 
 \subsection{Specific Aim}
 \begin{itemize}
@@ -20,8 +22,7 @@ Establish the feasibility of multi-tensor diffusion tractography to delineating 
 
 \subsection{Specific Hypothesis}
 \begin{itemize}
-    \item TN is known to relate to vascular compression of the cistern REZ, therefore its diffusivity signature will occur in the cisternal region.
-    \item MS-TN is related to brainstem MS lesions. Therefore CN V segments close to the lesions will show more significant changes in tissue diffusivity, whereas segments far away from the lesions will not. 
+    \item MS-TN is pathophysiologcially related to brainstem MS lesions. Therefore CN V segments close to these lesions will demonstrate diffusivity alterations that correlate with pain laterality.
     \item As a demyelinating disease, the pattern of change for MS-TN diffusivity signatures will reflects demyelination, including increase in RD, and decrease in FA. 
 \end{itemize}
 
@@ -48,25 +49,23 @@ Establish the best strategy to minimize DWI to T1 co-registration error in order
 \section{Study III: Merged Group Tractography Evaluation with Selective Automated Group Integrated Tractography}
 The construction of an automated group tractography software framework depends on CN V brainstem delineation using multi-tensor tractography and the optimal DWI-T1 co-registration strategy. The aim is to create and validate a software framework that automates the tractography process on a large-scale, and also streamline research workflow by providing region-of-interest, and tractography parameter management. The software also provides the ability to report the tractography output at a group level both visually, as well as quantifying the consistency of group tractography output by developing a rating score called Normalized Overlap Score (NOS) score. 
 
-\subsection{Main Aim}
+\subsection{Main Objective}
 The aim of this study is to validate and demonstrate the software's flexibility by comparing the performance of four tractography algorithms across six anatomical regions in a healthy population. The validations are performed  at a scale that would be prohibitive with manual methods. The comparisons determine the best tractography methods to use for different types of neuroanatomy.
 
-\subsection{Specific Aim}
+\subsection{Specific Objectives}
 \begin{itemize}
     \item Compare DTI, XST, deterministic constrained-spherical deconvolution (CSD), and probabilistic CSD. 
+    
     \item Use the above techniques to delineate a series of white matter tracts that have been challenging to delineate in full detail, including: fornix, facial/vestibular-cochlear cranial nerve complex, vagus nerve, rubral-cerebellar decussation, optic radiation, and auditory radiation.
-    \item Validate normalized overlapping scores (NOS) by comparing merged tractography derived NOS scores with manual rating by neuroanatomy experts.
-\end{itemize}
+    
+    \item Determine if specific tractography algorithms are preferentially suited to delineate specific pathways in the brain. For example, deterministic tractography may show more specificity in delineating cranial nerves, and probabilistic method better for deep neural pathways such as the optic and auditory radiations.
+    
+    \item Validate normalized overlapping scores (NOS) by comparing merged tractography derived NOS scores with manual rating by neuroanatomy experts. Demonstrate that NOS score will correlate with expert ratings, and show improved rating consistency over human rater variability.
 
-\subsection{Specific Hypothesis}
-\begin{itemize}
-    \item DTI is known to not able to delineate cross-fibers regions. If the group tractography works consistently, then its output will reflect such known algorithmic limitations, and DTI group tracts will not be able to perform well on more complex anatomies. The grouped tracts will however show consistent regional anatomical overlap across individuals.
-    \item Specific tractography algorithms will be preferentially suited for the visualization of specific areas in the brain. For examples, deterministic tractography will preferentially be more suitable for nerve tractography, and probabilistic method better for deep neural pathways such as the optic and auditory radiations.
-    \item NOS score will correlate with expert ratings, and show improved rating consistency over human rater variability.
 \end{itemize}
 
 \section{Study IV: Gaussian Process Classification of Trigeminal Neuralgia With Merged Tractography}
-The developed methodology is applied to the study of the trigeminal sensory pathway. The method used is now thoroughly tested, and the best-suited tractography methods determined from the previous study. This study aims to examine the diffusivity signature differences in the trigeminal sensory pathway between TN and controls in a larger group. The pathway is divided into three major regions: CN V, trigeminopontothalamic (TPT) segment, and the thalamocortical S1 segment. Along-the-tract analysis are carried out by dividing each segment into 30 subdivisions. Following this, we use machine learning algorithms to auto-determine relevant subdivisions that maximally differentiates TN from controls.
+The methodology developed in the previous study was applied to the study of the trigeminal sensory pathway. The aim of this study was to examine the diffusivity signature differences in the trigeminal sensory pathway between TN and controls in a larger group. The pathway was divided into three major regions: CN V, trigeminopontothalamic (TPT) segment, and the thalamocortical S1 segment. Along-the-tract analysis were carried out by dividing each segment into 30 subdivisions. Following this, we used machine learning algorithms to auto-determine relevant subdivisions that maximally differentiates TN from controls.
 
 \subsection{Main Aim}
 The aim of this project is to reconstruct the trigeminal pathways from the cisternal segment to the level of S1 sensory cortex, and to examination these pathways using Gaussian Process classification to determine the subdivisions along each pathways that maximally differentiates TN from controls.

@@ -1,6 +1,6 @@
 \section{Diffusion Magnetic Resonance Imaging}
 
-Diffusion magnetic resonance imaging (dMRI) is a popular MR modality that is capable of providing orientation information of brain white matter fibers \textit{in-vivo}, and thereby permitting the reconstruction and analysis of brain white matter structures with the use of computer reconstruction techniques. 
+Diffusion magnetic resonance imaging (dMRI) is a popular MR modality that is capable of providing orientation information of brain white matter fibres \textit{in-vivo}, and thereby permitting the reconstruction and analysis of brain white matter structures with the use of computer reconstruction techniques. 
 
 \subsection{Diffusion Weighted Image (DWI)}
 
@@ -106,7 +106,7 @@ Changes in white matter FA has been found to correlate with a wide spectrum of n
 
 \subsubsection{Limitations}
 
-DTI is based on the Gaussian model of water diffusion, and therefore imposes an important limitation. The Gaussian tensor can derive only one diffusion direction at a given voxel, and therefore is incapable of modelling cross-fiber diffusion of two or more directions. By extension, its derived metrics (FA, AD, RD) can only characterize a single diffusion direction as well. Therefore the interpretation of these metrics in white matter that contains cross-fiber configurations is tenuous.  
+DTI is based on the Gaussian model of water diffusion, and therefore imposes an important limitation. The Gaussian tensor can derive only one diffusion direction at a given voxel, and therefore is incapable of modelling cross-fibre diffusion of two or more directions. By extension, its derived metrics (FA, AD, RD) can only characterize a single diffusion direction as well. Therefore the interpretation of these metrics in white matter that contains cross-fibre configurations is tenuous.  
 
 \subsection{High Angular Resolution Diffusion Imaging}
 
@@ -119,19 +119,19 @@ The determination of gradient sampling pattern and b-value directly affect acqui
 \subsection{Spherical Deconvolution}
 
 An end-to-end spherical deconvolution diffusion model was first proposed by Tournier et al. \cite{Tournier2004}. 
-Consider a fiber population with distinct fiber components. The measured diffusion signal $S(\theta,\phi)$ can be written as:
+Consider a fibre population with distinct fibre components. The measured diffusion signal $S(\theta,\phi)$ can be written as:
 
 \begin{equation}
 S(\theta, \phi) = \sum_{i}^{} f_i \hat{A}_i R(\theta)
 \end{equation}
-where $\theta$ is the elevation angle,  $\phi$ the azimuth angle in spherical coordinates; $f_i$ is the volume fraction of the $i$-th fiber component, $\hat{A}$ is the rotation operator that orients fiber, and $R(\theta)$ is an axially symmetric response function. 
+where $\theta$ is the elevation angle,  $\phi$ the azimuth angle in spherical coordinates; $f_i$ is the volume fraction of the $i$-th fibre component, $\hat{A}$ is the rotation operator that orients fibre, and $R(\theta)$ is an axially symmetric response function. 
 
-$S(\theta,\phi) $ can be rewritten as a convolution over the unit sphere of $R(\theta)$ with a fiber orientation density function (FOD) $F(\theta, \phi)$, such that:
+$S(\theta,\phi) $ can be rewritten as a convolution over the unit sphere of $R(\theta)$ with a fibre orientation density function (FOD) $F(\theta, \phi)$, such that:
 \begin{equation}
 S(\theta, \phi) = F(\theta, \phi) \otimes R(\theta)
 \end{equation}
 
-With this approach, the FOD can be estimated using the reverse spherical deconvolution, using spherical and rotational harmonics \cite{Healy1998}. Spherical harmonics are orthonormal basis functions over a sphere, and therefore can approximate any symmetric diffusion geometry in the spherical q-space. The rotational harmonics similarly form the orthonormal basis over all possible rotations, and can represent any symmetric fiber configurations. The harmonics have two important parameters: the harmonic order $l$ and phase factor $m$, with $ -l \leq m \leq l $ for each harmonic order level $l$. The odd $l$ harmonics represent antisymmetric functions, while the even $l$ harmonics represent symmetric functions (\ref{fig:harmonics}). 
+With this approach, the FOD can be estimated using the reverse spherical deconvolution, using spherical and rotational harmonics \cite{Healy1998}. Spherical harmonics are orthonormal basis functions over a sphere, and therefore can approximate any symmetric diffusion geometry in the spherical q-space. The rotational harmonics similarly form the orthonormal basis over all possible rotations, and can represent any symmetric fibre configurations. The harmonics have two important parameters: the harmonic order $l$ and phase factor $m$, with $ -l \leq m \leq l $ for each harmonic order level $l$. The odd $l$ harmonics represent antisymmetric functions, while the even $l$ harmonics represent symmetric functions (\ref{fig:harmonics}). 
 
 \begin{figure}[ht]
 \begin{center}
@@ -148,7 +148,7 @@ S^l = R^l F^l
 \end{equation}
 
 To reduce the number of parameters to be computed, we can make the further assumption that the diffusion process is symmetric, and therefore the odd $l$ harmonic orders can be ignored, with only the even harmonics considered. 
-The response function $R(\theta)$ can be directly estimated from the dataset by supplying DWI region with high anisotropy from a single fiber bundle, such as the body of the corpus callosum. 
+The response function $R(\theta)$ can be directly estimated from the dataset by supplying DWI region with high anisotropy from a single fibre bundle, such as the body of the corpus callosum. 
 
 The maximum harmonic order $l_max$ that can be estimated is dependent on the obtained number of directions. For example, $l_max$ = 8 requires 45 directions, $l_max$ = 10 requires 66 directions, and so on. Larger $l_max$ are more sensitive to noise, which is a weakness for the first spherical deconvolution algorithm \cite{Tournier2004}. 
 
@@ -204,11 +204,11 @@ CSD is robust to noise at relatively low B-values, and is capable of good qualit
 
 Tractography is a computer graphics technique used by neuroscientists to delineate neural pathways with DWI imaging. Applying pathway tracking to DWI imaging in the brain was first explored by Mori \cite{Mori2002b} and Basser\cite{Basser2000}. Tractography in essence is the construction, or propagation of streamline from an underlying field of orientation information, in order to visualize continuous structures within a volume.  The orientation field is generally provided as a 3D matrix of directional information obtained from DTI, CSD, or other methods. For example, in DTI the directions are the eigen vector with the greatest magnitude $\hat{\lambda_1}$; for CSD, the directional vectors would be peaks from the FOD. 
 
-The family of methods that propagates by deterministic algorithms based on local orientation data is collectively called deterministic tractography. The first tracking algorithms were applied to DTI using step-wise polyline propagators that followed local DT tensors \cite{Conturo1999}. Further refinement of the line propagator to include neighbouring DT tensors, and interpolation of the local DT directions in order to obtain a smooth curve \cite{Mori2002b}. Basser introduced Runge-Kutta integration to allow more robust path-tracing when faced with noise in the local directions \cite{Basser2000}. Another similar path-integral method was also proposed by Tuch \cite{Tuch2000d}. The integrated tractography approaches are now standard practice for deterministic tractography \cite{Tournier2004,Pieper2004}. Deterministic tractography lends itself naturally to anatomical interpretation and further geometric analysis. It was traditionally paired with DTI, and so was thought to be limited in the case of crossing fibers. 
+The family of methods that propagates by deterministic algorithms based on local orientation data is collectively called deterministic tractography. The first tracking algorithms were applied to DTI using step-wise polyline propagators that followed local DT tensors \cite{Conturo1999}. Further refinement of the line propagator to include neighbouring DT tensors, and interpolation of the local DT directions in order to obtain a smooth curve \cite{Mori2002b}. Basser introduced Runge-Kutta integration to allow more robust path-tracing when faced with noise in the local directions \cite{Basser2000}. Another similar path-integral method was also proposed by Tuch \cite{Tuch2000d}. The integrated tractography approaches are now standard practice for deterministic tractography \cite{Tournier2004,Pieper2004}. Deterministic tractography lends itself naturally to anatomical interpretation and further geometric analysis. It was traditionally paired with DTI, and so was thought to be limited in the case of crossing fibres. 
 
-Other methods attempted to circumvent the limitation with probabilistic approaches that include white matter tissue priors in the fiber propagation model. The most popular of the probabilistic approach is the FSL software's probabilistic tractography module (FDT) \cite{Behrens2007}, which also includes a model-based ball-and-stick diffusion model that can resolve 2-fiber crossings. The FDT software produces visitation images of its probabilistic streams that collate the probability of tract propagation at each voxel. The visitation image, however, is hard to interpret and localize, and therefore does not rival deterministic methods in surgical visualization.
+Other methods attempted to circumvent the limitation with probabilistic approaches that include white matter tissue priors in the fibre propagation model. The most popular of the probabilistic approach is the FSL software's probabilistic tractography module (FDT) \cite{Behrens2007}, which also includes a model-based ball-and-stick diffusion model that can resolve 2-fibre crossings. The FDT software produces visitation images of its probabilistic streams that collate the probability of tract propagation at each voxel. The visitation image, however, is hard to interpret and localize, and therefore does not rival deterministic methods in surgical visualization.
 
-The availability of higher order HARDI methods, especially in CSD allows the reinterpretation of FOD as local fiber orientation probability distribution \cite{Tournier2010,Jeurissen2011b}. Development of a probabilistic streamline propagator based on CSD can now combine the advantage of probabilistic models with the geometric interpretability of deterministic tractography. 
+The availability of higher order HARDI methods, especially in CSD allows the reinterpretation of FOD as local fibre orientation probability distribution \cite{Tournier2010,Jeurissen2011b}. Development of a probabilistic streamline propagator based on CSD can now combine the advantage of probabilistic models with the geometric interpretability of deterministic tractography. 
 
 \subsubsection{Applications}
 Tractography permits the mapping of white matter pathway structures with computer graphic and statistic methods. It permits the study of brain structural connectivity at individual level \cite{Boorman2007} and group level \cite{Meskaldji2013},  circuitry mapping \cite{Kirsch2015} and macro-structural insights between the brain hemispheres \cite{Kucyi2012a}. It is often paired with functional connectivity for studies in multiple sclerosis \cite{Zhong2016,Rocca2007a}, chronic pain \cite{Mansour2013,Seifert2011,Wiech2014}, and other areas of study such as empathy \cite{Bernhardt2014}, and aphasia \cite{Catani2013c}.
