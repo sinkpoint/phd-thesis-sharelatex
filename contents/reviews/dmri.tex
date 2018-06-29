@@ -1,6 +1,6 @@
 \section{Diffusion Magnetic Resonance Imaging}
 
-Diffusion magnetic resonance imaging (dMRI) is a popular MR modality that is capable of providing orientation information of brain white matter fibres \textit{in-vivo}, and thereby permitting the reconstruction and analysis of brain white matter structures with the use of computer reconstruction techniques. 
+Diffusion magnetic resonance imaging (dMRI) is a popular MR modality that is capable of providing orientation information of brain white matter fibres \textit{in-vivo}, and thereby permitting the reconstruction and analysis of brain white matter structures with the use of computer reconstruction techniques \cite{Johansen-Berg2013}. 
 
 \subsection{Diffusion Weighted Image (DWI)}
 
@@ -202,7 +202,7 @@ CSD is robust to noise at relatively low B-values, and is capable of good qualit
 
 \subsection{Tractography}
 
-Tractography is a computer graphics technique used by neuroscientists to delineate neural pathways with DWI imaging. Applying pathway tracking to DWI imaging in the brain was first explored by Mori \cite{Mori2002b} and Basser\cite{Basser2000}. Tractography in essence is the construction, or propagation of streamline from an underlying field of orientation information, in order to visualize continuous structures within a volume.  The orientation field is generally provided as a 3D matrix of directional information obtained from DTI, CSD, or other methods. For example, in DTI the directions are the eigen vector with the greatest magnitude $\hat{\lambda_1}$; for CSD, the directional vectors would be peaks from the FOD. 
+Tractography is a computer graphics technique used by neuroscientists to delineate neural pathways with DWI imaging. Applying pathway tracking to DWI imaging in the brain was first explored by Mori \cite{Mori2002b} and Basser\cite{Basser2000}. Tractography in essence is the construction, or propagation of streamlines from an underlying field of orientation information, in order to visualize continuous structures within a volume.  The orientation field is generally provided as a 3D matrix of directional information obtained from DTI, CSD, or other methods. For example, in DTI the directions are the eigen vector with the greatest magnitude $\hat{\lambda_1}$; for CSD, the directional vectors would be peaks from the FOD. 
 
 The family of methods that propagates by deterministic algorithms based on local orientation data is collectively called deterministic tractography. The first tracking algorithms were applied to DTI using step-wise polyline propagators that followed local DT tensors \cite{Conturo1999}. Further refinement of the line propagator to include neighbouring DT tensors, and interpolation of the local DT directions in order to obtain a smooth curve \cite{Mori2002b}. Basser introduced Runge-Kutta integration to allow more robust path-tracing when faced with noise in the local directions \cite{Basser2000}. Another similar path-integral method was also proposed by Tuch \cite{Tuch2000d}. The integrated tractography approaches are now standard practice for deterministic tractography \cite{Tournier2004,Pieper2004}. Deterministic tractography lends itself naturally to anatomical interpretation and further geometric analysis. It was traditionally paired with DTI, and so was thought to be limited in the case of crossing fibres. 
 
