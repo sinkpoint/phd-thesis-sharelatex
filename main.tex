@@ -1,4 +1,4 @@
-\documentclass[12pt,oneandahalfspaced]{ut-thesis}
+\documentclass[12pt,oneandahalfspaced, twoside]{ut-thesis}
 % \documentclass[10pt,doublespaced]{ut-thesis}
 %\documentclass[a4paper,12pt]{book}
 
@@ -20,8 +20,10 @@
 \usepackage{csvsimple}
 \usepackage[export]{adjustbox}
 \usepackage[authormarkup=superscript,]{changes}
-
+\usepackage[titletoc]{appendix}
 \usepackage[acronym,toc]{glossaries}
+\usepackage{tocbibind}
+
 \makeglossaries
 
 \input{./contents/glossary}
@@ -47,7 +49,7 @@
 \department{Institute of Medical Science}
 \gradyear{2018}
 
-\author{David Qixiang Chen}
+\author{Qixiang (David) Chen}
 \title{Neuroimaging of Trigeminal Neuralgia: Application of Population Diffusion Magnetic Resonance Tractography and Machine Learning}
 
 \maketitle
@@ -56,7 +58,6 @@
 
 \include{./contents/abstract}
 \include{./contents/acknowledgements}
-\input{./contents/contributions}
 
 \renewcommand{\contentsname}{Table of Contents}
 \tableofcontents
@@ -90,5 +91,9 @@
 
 \bibliographystyle{apacite}
 \bibliography{mendeley,external_refs}
+
+\begin{appendices}
+    \input{./contents/contributions}
+\end{appendices}
 
 \end{document}

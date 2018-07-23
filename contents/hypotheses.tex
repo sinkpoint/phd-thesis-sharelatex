@@ -8,7 +8,7 @@ With an increasing number of subjects, single subject analysis can become cumber
 
 Lastly, the methodological advances of this thesis were applied to the large-scale study of TN versus healthy control.  The considerable amount of data output from the methodology  enabled the application of machine learning towards the aim of quantifying the specific group-wise diffusivity changes along the trigeminal sensory white matter pathways, and in order to identify specific diffusivity pattern differentiating TN from healthy controls. The roadmap and rationale for the specific studies are described below.
 
-\section{Study I: Diffusivity signatures characterize trigeminal neuralgia associated with multiple sclerosis}
+\section[Study I]{Study I: Diffusivity signatures characterize trigeminal neuralgia associated with multiple sclerosis}
 MS-TN is thought to relate to MS lesions in the brainstem, in the area of the trigeminal fibres in the pons. However the exact anatomical relationship between the lesions and trigeminal nerve within the brainstem has been difficult to quantify, due to the limited contrast and resolution in standard MRI and the variability of MS lesion across individuals. Previous single-tensor tractography studies of CN V have been limited to the imaging of the cisternal nerve segment. In this study, we use multi-tensor tractography with two aims: first, we focus on the delineation of the brainstem sub-segments of CN V; and the second, on the feasibility of applying multi-tensor tractography in the study of diffusivity differences in TN and MS-TN. 
 
 \subsection{Main Aim} 
@@ -26,7 +26,7 @@ Establish the feasibility of multi-tensor diffusion tractography to delineate th
     \item As a demyelinating disease, the pattern of change for MS-TN diffusivity signatures will reflects demyelination, including increase in RD, and decrease in FA. 
 \end{itemize}
 
-\section{Study II: Diffusion Weighted Image to T1 Co-registration Without Reversed-blip: Investigation of Best Practices}
+\section[Study II]{Study II: Diffusion Weighted Image to T1 Co-registration Without Reversed-blip: Investigation of Best Practices}
 The task of establishing inter-subject anatomical correspondences is imperative for extending tractography to multiple subjects. Population studies with inter-subject T1 registration are well-established, where a normalized T1 template is generated from numerous subjects to facilitate data analysis. Similarly, DWI of each subject can be co-registered to their corresponding T1, to extend the T1 template space to tractography space. Therefore the DWI-T1 co-registration accuracy is crucial to the reliability of inter-subject tractography alignment. DWI-T1 co-registration is challenging due to the DWI eddy-current and EPI field distortions. While new DWI sequences with reversed-blips have been shown to reduce non-linear distortions, they have yet to be commonly adopted in clinical practice. While T1 inter-subject registration methodology is well documented, the feasibility, and strategy for DWI-T1 co-registration on sequence without reversed-blips have not been documented, and forms a potential bottleneck on the performance of any DWI-T1 population registration pipeline.
 
 \subsection{Main Aim}
@@ -46,7 +46,7 @@ Establish the best strategy to minimize DWI to T1 co-registration error in order
     \item Anisotropic-power (AP) image will show more substantial improvement over the existing scalar images.
 \end{itemize}
 
-\section{Study III: Merged Group Tractography Evaluation with Selective Automated Group Integrated Tractography}
+\section[Study III]{Study III: Merged Group Tractography Evaluation with Selective Automated Group Integrated Tractography}
 The construction of an automated group tractography software framework depends on CN V brainstem delineation using multi-tensor tractography and the optimal DWI-T1 co-registration strategy. The aim is to create and validate a software framework that automates the tractography process on a large-scale, and also streamline research workflow by providing region-of-interest, and tractography parameter management. The software also provides the ability to report the tractography output at a group level both visually, as well as quantifying the consistency of group tractography output by developing a rating score called Normalized Overlap Score (NOS) score. 
 
 \subsection{Main Objective}
@@ -64,7 +64,7 @@ The aim of this study is to validate and demonstrate the software's flexibility 
 
 \end{itemize}
 
-\section{Study IV: Gaussian Process Classification of Trigeminal Neuralgia With Merged Tractography}
+\section[Study IV]{Study IV: Gaussian Process Classification of Trigeminal Neuralgia With Merged Tractography}
 The methodology developed in the previous study was applied to the study of the trigeminal sensory pathway. The aim of this study was to examine the diffusivity signature differences in the trigeminal sensory pathway between TN and controls in a larger group. The pathway was divided into three major regions: CN V, trigeminopontothalamic (TPT) segment, and the thalamocortical S1 segment. Along-the-tract analysis were carried out by dividing each segment into 30 subdivisions. Following this, we used machine learning algorithms to auto-determine relevant subdivisions that maximally differentiates TN from controls.
 
 \subsection{Main Aim}
